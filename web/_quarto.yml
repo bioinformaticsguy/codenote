@@ -1,0 +1,39 @@
+project:
+  type: website
+
+website:
+  title: "Documentation"
+  sidebar:
+      style: "floating"
+      search: true
+      collapse-level: 2
+      contents:
+      - text: "Home"
+        href : index.qmd
+      - section: "Piplines"
+        contents:
+        - href: long.qmd
+        - href: short.qmd
+      - section: "Commands"
+        contents:
+        - href: terminal.qmd
+
+metadata:
+  author: "Ali Hassan"
+  date: "2025-04-25"  
+
+format:
+  html:
+    code-fold: true
+    code-summary: "Show the code"
+    theme:
+      light: 
+        - united
+        # - cosmo
+        # - materia
+        # - flatly
+      dark: 
+        # - darkly
+        - superhero
+    css: styles.css
+    toc: true

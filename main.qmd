@@ -1,0 +1,28 @@
+---
+title: "Quarto Basics"
+format:
+  html:
+    page-layout: full
+    embed-resources: true
+    code-fold: true
+    smooth-scroll: true
+
+    toc: true
+    toc-location: right
+    number-sections: false
+
+    other-links:
+      - text: NASA Open Data
+        href: https://data.nasa.gov/
+
+
+jupyter: python3
+---
+
+For a demonstration of a line plot on a polar axis, see @fig-polar.
+
+# Hi How are you
+
+## Heading 2
+
+### Heading 3

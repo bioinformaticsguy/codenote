@@ -1,0 +1,50 @@
+---
+title: "Short Read"
+---
+# Short Read Pipeline Documentation
+This page serves as a comprehensive guide to the Short Read Pipeline. It tracks the versions of the pipeline used throughout the analysis, along with the exact terminal commands executed to run each step of the pipeline. By documenting both the pipeline versions and the commands, this page ensures reproducibility and transparency in the analysis workflow. Each section includes:
+
+- Pipeline Version: The version of the pipeline that was utilized for the analysis.
+
+- Terminal Commands: A detailed log of all commands executed in the terminal to run the pipeline.
+
+- Execution Details: Descriptions of key steps involved, including any specific parameters or configurations used.
+
+# Setting up the Environment
+Below are the one time commands that are needed to setup the env.
+```bash
+conda create -n nf
+conda activate nf
+conda install bioconda::nextflow
+conda install conda-forge::singularity
+cd work/
+mkdir raredisease/
+cd raredisease/
+mkdir workdir outdir
+```
+
+# Verify the instalations
+
+Check Nextflow verison 
+```bash
+(nf)$ nextflow -version
+
+      N E X T F L O W
+      version 24.10.6 build 5937
+      created 23-04-2025 16:53 UTC (18:53 CEST)
+      cite doi:10.1038/nbt.3820
+      http://nextflow.io
+```
+
+Check Singularity verison 
+```bash
+(nf)$ singularity -version
+singularity version 3.8.6
+```
+
+# Run Command
+```bash
+nextflow run nf-core/raredisease -revision dev -profile bih,test --outdir /data/cephfs-1/home/users/alhassa_m/work/raredisease/outdir/2025-02-05_16-59-21/ -work-dir /data/cephfs-1/home/users/alhassa_m/work/raredisease/workdir/
+```
+
+
