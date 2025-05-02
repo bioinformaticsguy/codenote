@@ -3,3 +3,21 @@ title: "Long Read"
 ---
 
 Hi this page is for Long Read Documentation.
+
+# Connecting to Bioscientia SFTP Server
+
+Change the directory to the ssh and then, check if the keys are there.
+
+```bash
+cd ~/.ssh$
+ls
+```
+
+If you get the following result then try the sftp command.
+
+```bash
+sftp -i private-key.pem kdhumuksh1@sftp2.bioscientia.de
+```
+
+Enter the passphrase and the you can see the files in the server.
+
