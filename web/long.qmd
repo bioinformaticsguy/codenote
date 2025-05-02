@@ -21,3 +21,36 @@ sftp -i private-key.pem kdhumuksh1@sftp2.bioscientia.de
 
 Enter the passphrase and the you can see the files in the server.
 
+## Important commands
+To work with local and remote directories in an SFTP session, here are the key commands:
+
+- lls — Lists the contents of the local directory (your machine).
+
+- ls — Lists the contents of the remote directory (on the SFTP server).
+
+- lcd <path> — Changes the local directory.
+
+- cd <path> — Changes the remote directory.
+
+
+## Downloading All Files from a Remote Directory
+Once you've navigated to the desired directories using cd (remote) and lcd (local), you can download all files from the current remote directory to your current local directory using:
+``` bash
+mget *
+```
+
+## Example Output
+You should see output similar to this in the terminal:
+
+```bash
+sftp> mget *
+Fetching /export/r84078_20241114_111631/S011_X49-24_WGS-Rv-0156-report.pdf to S011_X49-24_WGS-Rv-0156-report.pdf
+S011_X49-24_WGS-Rv-0156-report.pdf                                                                                        100% 3917KB  14.5MB/s   00:00
+
+Fetching /export/r84078_20241114_111631/S011_X49-24_WGS-Rv-0156.hifi_reads.bam to S011_X49-24_WGS-Rv-0156.hifi_reads.bam
+S011_X49-24_WGS-Rv-0156.hifi_reads.bam                                                                                    100%   34GB  55.6MB/s   10:25
+
+Fetching /export/r84078_20241114_111631/S011_X49-24_WGS-Rv-0156.hifi_reads.bam.pbi to S011_X49-24_WGS-Rv-0156.hifi_reads.bam.pbi
+S011_X49-24_WGS-Rv-0156.hifi_reads.bam.pbi                                                                                100%   79MB  44.1MB/s   00:01
+
+```
