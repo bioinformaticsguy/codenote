@@ -99,3 +99,12 @@ Run's Date: 05/05/2025 Monday
 ```bash
 miniwdl run workflows/family.wdl -i backends/hpc/family.hpc.inputs.json --verbose
 ```
+
+## resoursces
+Ram 256 
+Cores 42
+
+the command used to request the resoursces is as follows:
+```bash
+ srun --partition=shortterm --mem=256G -c 42 --pty bash
+```
