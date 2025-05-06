@@ -47,4 +47,22 @@ singularity version 3.8.6
 nextflow run nf-core/raredisease -revision dev -profile bih,test --outdir /data/cephfs-1/home/users/alhassa_m/work/raredisease/outdir/2025-02-05_16-59-21/ -work-dir /data/cephfs-1/home/users/alhassa_m/work/raredisease/workdir/
 ```
 
+Command with custom config file:
+
+```bash
+ nextflow run nf-core/raredisease -revision dev -profile test -c custom.config --outdir /data/cephfs-1/home/users/alhassa_m/scratch/001/ -work-dir /data/cephfs-1/home/users/alhassa_m/scratch/workdir/
+```
+
+# Why we need dev or master
+
+
+```bash
+(nf) [alhassa_m@hpc-cpu-204 raredisease]$ nextflow run nf-core/raredisease -profile bih,test --outdir /data/cephfs-1/home/users/alhassa_m/work/raredisease/o
+utdir/2025-02-05_16-59-21/ -work-dir /data/cephfs-1/home/users/alhassa_m/work/raredisease/workdir/
+
+ N E X T F L O W   ~  version 24.10.6
+
+Project `nf-core/raredisease` is currently stuck on revision: dev -- you need to explicitly specify a revision with the option `-r` in order to use it
+```
+
 
