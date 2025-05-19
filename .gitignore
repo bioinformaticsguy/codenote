@@ -1,3 +1,4 @@
-/web/_site
-/web/.quarto
+_site
+.quarto
 /.quarto/
+styles.css
