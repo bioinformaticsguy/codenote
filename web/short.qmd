@@ -97,6 +97,37 @@ Institutional config options
   config_profile_url             : N/A
 ```
 
+## Current Config File
+
+```python
+params {
+    config_profile_description = 'Custom Config'
+    config_profile_contact     = 'Ali Hassan (Institut fuer Humangenetik)'
+    config_profile_url         = 'N/A'
+}
+
+params {
+    max_memory = 760.GB
+    max_cpus   = 48
+    max_time   = 72.h
+}
+
+process {
+    resourceLimits = [
+        memory: 760.GB,
+        cpus: 48,
+        time: 72.h
+    ]
+    executor = 'slurm'
+    scratch  = '$SCRATCHO'
+}
+
+singularity {
+    enabled = true
+}
+
+```
+
 
 ## Next Steps
 1. Try to change the project folder in the nextflow run command or in config (projectDir).
