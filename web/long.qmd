@@ -108,3 +108,5 @@ the command used to request the resoursces is as follows:
 ```bash
  srun --partition=shortterm --mem=256G -c 42 --pty bash
 ```
+
+

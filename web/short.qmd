@@ -66,3 +66,50 @@ Project `nf-core/raredisease` is currently stuck on revision: dev -- you need to
 ```
 
 
+
+# May 19th 2025 Monday
+Tried to run the pipline again with the same configurations, it ran for the first time with errors and then I started to recieve errors like below:
+
+```code
+(nf) [alhassa_m@hpc-cpu-75 scratch]$  nextflow run nf-core/raredisease -revision dev -profile test -c custom.config --outdir /data/cephfs-1/home/users/alhassa_m/scratch/outdir/001/ -work-dir /data/cephfs-1/home/users/alhassa_m/scratch/workdir/
+Nextflow 25.04.2 is available - Please consider updating your version to it
+
+ N E X T F L O W   ~  version 24.10.6
+
+Pulling nf-core/raredisease ...
+Disk quota exceeded
+(nf) [alhassa_m@hpc-cpu-75 scratch]$
+```
+
+
+Also noted that whenever I run the nextflow pipline it creates the .nextflow.log folder in the scratch folder and in the parent directory as well. 
+Currently the problem is that the home directory gets filled up and then there is no space to download the images. 
+Once I deleted the .singularity folder in the home directory.
+Running the pipeline agian works but it then stops soon because of space error. 
+
+Updated the custom Config File and apparently the file is being used as we can see changes on the terminal:
+
+```code
+Institutional config options
+  config_profile_name            : Test profile
+  config_profile_description     : Custom Config
+  config_profile_contact         : Ali Hassan (Institut fuer Humangenetik)
+  config_profile_url             : N/A
+```
+
+
+## Next Steps
+1. Try to change the project folder in the nextflow run command or in config (projectDir).
+
+```bash
+Core Nextflow options
+  revision                       : dev
+  runName                        : pedantic_bernard
+  containerEngine                : singularity
+  launchDir                      : /data/cephfs-1/scratch/groups/kircher/users/alhassa_m
+  workDir                        : /data/cephfs-1/home/users/alhassa_m/scratch/workdir
+  projectDir                     : /data/cephfs-1/home/users/alhassa_m/.nextflow/assets/nf-core/raredisease
+  userName                       : alhassa_m
+  profile                        : test
+  configFiles                    : /data/cephfs-1/home/users/alhassa_m/.nextflow/assets/nf-core/raredisease/nextflow.config, /data/cephfs-1/scratch/groups/kircher/users/alhassa_m/custom.config
+```
