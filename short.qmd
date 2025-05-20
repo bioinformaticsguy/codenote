@@ -144,3 +144,22 @@ Core Nextflow options
   profile                        : test
   configFiles                    : /data/cephfs-1/home/users/alhassa_m/.nextflow/assets/nf-core/raredisease/nextflow.config, /data/cephfs-1/scratch/groups/kircher/users/alhassa_m/custom.config
 ```
+
+# May 20th 2025 Tuesday
+We haven't changed the project folder rather we have created simlinks for .singularity folder.
+
+```code
+ln -s work/.singularity/ .singularity
+```
+
+
+This lets the folder in the home directory but all the real data that takes the space is now in the work directory which has a lot of quotoa.
+
+Finally the pipline finished Running
+```python 
+-[nf-core/raredisease] Pipeline completed successfully-
+Completed at: 20-May-2025 15:48:30
+Duration    : 56m 2s
+CPU hours   : 11.2
+Succeeded   : 1'004
+```
