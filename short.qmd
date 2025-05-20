@@ -163,3 +163,42 @@ Duration    : 56m 2s
 CPU hours   : 11.2
 Succeeded   : 1'004
 ```
+
+The config file is also changed and the current version of the config file looks like this:
+
+```python
+workDir = '/data/cephfs-1/work/groups/kircher/users/alhassa_m/run_nf/workdir/'
+
+params {
+    config_profile_description = 'Custom Config'
+    config_profile_contact     = 'Ali Hassan (Institut fuer Humangenetik)'
+    config_profile_url         = 'N/A'
+}
+
+params {
+    max_memory = 760.GB
+    max_cpus   = 48
+    max_time   = 72.h
+}
+
+process {
+    resourceLimits = [
+        memory: 760.GB,
+        cpus: 48,
+        time: 72.h
+    ]
+    executor = 'slurm'
+    scratch  = '/data/cephfs-1/scratch/groups/kircher/users/alhassa_m/'
+}
+
+singularity {
+    enabled = true
+    cacheDir = '/data/cephfs-1/work/groups/kircher/users/alhassa_m/run_nf/workdir/singularity/'
+}
+```
+
+Current run command is like this: 
+
+```code
+nextflow run nf-core/raredisease -revision dev -profile test -c custom.config --outdir /data/cephfs-1/scratch/groups/kircher/users/alhassa_m/outdir/
+```
