@@ -1,3 +1,44 @@
 ---
 title: "Terminal"
 ---
+
+# SFTP Commands
+## The Command
+
+
+```bash
+sftp -oPort=22 -oHostKeyAlgorithms=+ssh-rsa guest2@131.174.197.250
+
+```
+
+## 🧠 Why do we need -oHostKeyAlgorithms=+ssh-rsa?
+💡 Problem:
+Modern versions of OpenSSH (since v8.8) have disabled the ssh-rsa algorithm by default due to security concerns. So when a server only supports ssh-rsa (and not newer, safer algorithms), your SSH/SFTP client refuses to connect.
+You were seeing an error like:
+
+```code 
+Unable to negotiate with 131.174.197.250 port 22: no matching host key type found. Their offer: ssh-rsa,ssh-dss
+```
+
+## 🔐 What this means:
+The server only supports ssh-rsa or ssh-dss, both of which are considered old/insecure.
+
+Your SSH client refused to accept them for security reasons.
+
+## ✅ What does -oHostKeyAlgorithms=+ssh-rsa do?
+It tells your SSH/SFTP client:
+
+"It's okay to accept and use ssh-rsa for host verification."
+
+This lets you bypass the modern security restriction just for this connection, allowing it to proceed.
+
+
+## 🔒 Security Note:
+This is generally safe for trusted servers, especially in closed environments (like HPC systems).
+
+But don’t use this option on unknown/public servers unless necessary, because older algorithms like ssh-rsa are more vulnerable to certain attacks.
+
+## Downloading the Folder in SFTP
+```code
+get -r foldername
+```
