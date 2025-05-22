@@ -202,3 +202,98 @@ Current run command is like this:
 ```code
 nextflow run nf-core/raredisease -revision dev -profile test -c custom.config --outdir /data/cephfs-1/scratch/groups/kircher/users/alhassa_m/outdir/
 ```
+
+# May 22nd 2025 Thursday
+Created a one liner to check which samples are one file each forword and reverse read.
+
+Here is the one liner code:
+
+```code 
+search_dir="/data/cephfs-2/unmirrored/groups/kircher/SexDiversity"; prefix="DNA_"; digit_list=({01..49}); for digit in "${digit_list[@]}"; do pattern="*${prefix}${digit}*"; label="${prefix}${digit}"; count=$(find "$search_dir" -name "$pattern" | wc -l); if [ "$count" -eq 4 ]; then echo "$label"; fi; done
+```
+
+## Step-by-step explanation of the script
+
+| Step | Code snippet                                                           | What it does                                                          |
+|-------|----------------------------------------------                         |-----------------------------------------------------------            |
+| 1     | `search_dir="/data/cephfs-2/unmirrored/groups/kircher/SexDiversity"`  | Defines the directory to search files in.                             |
+| 2     | `prefix="DNA_"`                                                       | Sets the prefix part of your file name pattern.                       |
+| 3     | `digit_list=({01..49})`                                               | Creates a list/array of zero-padded numbers from 01 to 49.            |
+| 4     | `for digit in "${digit_list[@]}"; do`                                 | Starts a loop over each digit in the list.                            |
+| 5     | `pattern="*${prefix}${digit}*"`                                       | Builds a file search pattern like `*DNA_01*`, `*DNA_02*`, etc.        |
+| 6     | `label="${prefix}${digit}"`                                           | Creates the label to print if the condition matches (e.g., `DNA_01`). |
+| 7     | `count=$(find "$search_dir" -name "$pattern" \| wc -l)`               | Counts how many files in `$search_dir` match the pattern.             |
+| 8     | `if [ "$count" -eq 4 ]; then echo "$label"; fi`                       | If count equals 4, prints the label.                                  |
+| 9     | `done`                                                                | Ends the loop.                                                        |
+
+
+### Notes:
+
+- The `${prefix}${digit}` construct dynamically builds file name patterns.
+- The `find` command searches files recursively in the specified directory.
+- `wc -l` counts the number of matching files.
+- The `if` condition can be changed to other numeric comparisons like `-gt`, `-ge`, etc.
+
+## Sample Details
+After checking this we found that following 8 samples have just ```one``` file per forword/reverse read:
+
+```python
+DNA_01
+DNA_10
+DNA_11
+DNA_13
+DNA_15
+DNA_17
+DNA_38
+DNA_46
+```
+
+After checking this we found that following 30 samples have ```three``` files per forword/reverse read:
+
+```python
+DNA_02
+DNA_03
+DNA_04
+DNA_05
+DNA_06
+DNA_09
+DNA_14
+DNA_16
+DNA_18
+DNA_19
+DNA_20
+DNA_22
+DNA_23
+DNA_24
+DNA_26
+DNA_27
+DNA_28
+DNA_29
+DNA_30
+DNA_31
+DNA_32
+DNA_35
+DNA_36
+DNA_37
+DNA_39
+DNA_44
+DNA_45
+DNA_47
+DNA_48
+DNA_49
+```
+
+After checking this we found that following 10 samples have ```three``` files per forword/reverse read:
+
+```python
+DNA_07
+DNA_08
+DNA_21
+DNA_25
+DNA_33
+DNA_34
+DNA_40
+DNA_41
+DNA_42
+DNA_43
+```
