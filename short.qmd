@@ -214,7 +214,7 @@ search_dir="/data/cephfs-2/unmirrored/groups/kircher/SexDiversity"; prefix="DNA_
 
 ## Step-by-step explanation of the script
 
-| Step | Code snippet                                                           | What it does                                                          |
+| Step  | Code snippet                                                          | What it does                                                          |
 |-------|----------------------------------------------                         |-----------------------------------------------------------            |
 | 1     | `search_dir="/data/cephfs-2/unmirrored/groups/kircher/SexDiversity"`  | Defines the directory to search files in.                             |
 | 2     | `prefix="DNA_"`                                                       | Sets the prefix part of your file name pattern.                       |
@@ -297,3 +297,13 @@ DNA_41
 DNA_42
 DNA_43
 ```
+
+# May 28th 2025 Wednesday
+
+```code 
+ nextflow run nf-core/raredisease -revision dev -profile test,singularity -params-file params.yaml -c custom.config    
+```
+
+So this time I ran the pipline with just 8GB memory and just 1 core with the command mentioned above. 
+
+Though I have changed the work directory as well as the out directory as previously home work folder got full and my pipline was struck in the middle.
