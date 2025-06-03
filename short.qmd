@@ -901,3 +901,66 @@ run command is as follows:
 ```python
 nextflow run nf-core/raredisease -revision dev -profile test -params-file params.yaml -c custom.config
 ```
+
+# June 3rd 2025 Tuesday
+I checked the running jobs and found out the following:
+
+```python
+JobID      CPUs   Nodes   Memory(GB) NodeList        RunTime    TimeLimit    JobName
+16665798   1      1       8          hpc-cpu-82      23:16:19   7-00:00:00   bash
+16682580   6      1       36         hpc-cpu-14      04:18:00   08:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_CALL_STRUCTURAL_VARIANTS_CALL_SV_TIDDIT_TIDDIT_SV_(DNA_02)
+16682500   6      1       36         hpc-cpu-10      04:28:45   08:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_QC_BAM_QUALIMAP_BAMQC_(DNA_02)
+```
+
+Script used for this is as below:
+
+```bash
+
+
+# Print table header
+printf "%-10s %-6s %-7s %-10s %-15s %-10s %-12s %-20s\n" \
+    "JobID" "CPUs" "Nodes" "Memory(GB)" "NodeList" "RunTime" "TimeLimit" "JobName"
+
+# Loop through all your jobs
+for job in $(squeue --user $USER --noheader --format="%i"); do
+    scontrol show job "$job" | awk -v jobid="$job" '
+    BEGIN {
+        name="NA"; cpus="NA"; nodes="NA"; mem="NA";
+        nodelist="NA"; runtime="NA"; timelimit="NA";
+    }
+    /JobName=/ {
+        for (i=1;i<=NF;i++) {
+            if ($i ~ /^JobName=/) name=substr($i,9);
+        }
+    }
+    /NumCPUs=/ {
+        for (i=1;i<=NF;i++) {
+            if ($i ~ /^NumCPUs=/) cpus=substr($i,9);
+            if ($i ~ /^NumNodes=/) nodes=substr($i,10);
+        }
+    }
+    /TRES=/ {
+        match($0, /mem=([0-9]+)([MG]?)B?/, m);
+        if (m[1] != "") {
+            if (m[2] == "G") mem = m[1];
+            else if (m[2] == "M") mem = sprintf("%.1f", m[1]/1024);
+            else mem = "NA";
+        }
+    }
+    /NodeList=/ {
+        for (i=1;i<=NF;i++) {
+            if ($i ~ /^NodeList=/) nodelist=substr($i,10);
+        }
+    }
+    /RunTime=/ {
+        for (i=1;i<=NF;i++) {
+            if ($i ~ /^RunTime=/) runtime=substr($i,9);
+            if ($i ~ /^TimeLimit=/) timelimit=substr($i,11);
+        }
+    }
+    END {
+        printf "%-10s %-6s %-7s %-10s %-15s %-10s %-12s %-20s\n", \
+               jobid, cpus, nodes, mem, nodelist, runtime, timelimit, name;
+    }'
+done
+```
