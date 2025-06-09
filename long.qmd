@@ -109,4 +109,22 @@ the command used to request the resoursces is as follows:
  srun --partition=shortterm --mem=256G -c 42 --pty bash
 ```
 
+# June 9rd 2025 Monday
+List of potential SNV files that we can take a look.
 
+## SNVs
+### Joint 
+```code
+/data/humangen_kircherlab/hassan/HiFi-human-WGS-WDL/000_Old_Outputs/20250506_121608_humanwgs_family_2ndTrio_CN/out/tertiary_small_variant_compound_het_tsv/SecondTrio.joint.GRCh38.small_variants.phased.norm.slivar.compound_hets.tsv
+vscode-remote://ssh-remote%2Bheadnode01.omics.uni-luebeck.de/data/humangen_kircherlab/hassan/HiFi-human-WGS-WDL/000_Old_Outputs/20250506_121608_humanwgs_family_2ndTrio_CN/out/tertiary_small_variant_filtered_tsv/SecondTrio.joint.GRCh38.small_variants.phased.norm.slivar.tsv
+```
+## Looked at IGV
+```code
+/data/humangen_kircherlab/hassan/HiFi-human-WGS-WDL/000_Old_Outputs/20250506_121608_humanwgs_family_2ndTrio_CN/out/trgt_spanning_reads/0/S005_X32-24_WGS-Rv-0150.GRCh38.trgt.spanning.sorted.bam
+```
+
+## Files that can be used in the report
+```code
+/data/humangen_kircherlab/hassan/HiFi-human-WGS-WDL/000_Old_Outputs/20250506_121608_humanwgs_family_2ndTrio_CN/out/stats_file/SecondTrio.stats.txt
+
+```
