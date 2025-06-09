@@ -964,3 +964,27 @@ for job in $(squeue --user $USER --noheader --format="%i"); do
     }'
 done
 ```
+
+
+
+# June 4rd 2025 Wednesday
+
+
+Last tome pipeline was struck at:  ```149 more processes waiting for task...``` so then I ran it again. 
+
+Ran the pipeline and nf core spawns a lot of jobs intitially.
+
+```code
+[alhassa_m@hpc-login-1 ~]$ date +"%Y-%m-%d %H:%M:%S"
+2025-06-04 10:46:05
+[alhassa_m@hpc-login-1 ~]$ ./work/sh_scripts/specs_usage.sh
+JobID      CPUs   Nodes   Memory(GB) NodeList        RunTime    TimeLimit    JobName
+16695642   2      1       16         hpc-cpu-60      00:02:58   7-00:00:00   bash
+16695689   6      1       36         hpc-cpu-6       00:01:11   08:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_FASTQC_(DNA_02_LNUMBER1)
+16695690   6      1       36         hpc-cpu-90      00:01:11   08:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_FASTQC_(DNA_02_LNUMBER2)
+16695691   6      1       36         hpc-cpu-141     00:01:11   08:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_ALIGN_FASTP_(DNA_02_LNUMBER2)
+16695693   6      1       36         hpc-cpu-152     00:01:11   08:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_ALIGN_FASTP_(DNA_02_LNUMBER1)
+16695694   6      1       36         hpc-cpu-153     00:01:11   08:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_FASTQC_(DNA_02_LNUMBER3)
+16695695   6      1       36         hpc-cpu-95      00:01:11   08:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_ALIGN_FASTP_(DNA_02_LNUMBER3)
+16695701   1      1       6          hpc-cpu-153     00:01:11   04:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_PREPARE_REFERENCES_BWA_INDEX_GENOME_(reference.fasta)
+```
