@@ -1,4 +1,4 @@
-[---
+---
 title: "Short Read"
 ---
 # Short Read Pipeline Documentation
@@ -987,4 +987,11 @@ JobID      CPUs   Nodes   Memory(GB) NodeList        RunTime    TimeLimit    Job
 16695694   6      1       36         hpc-cpu-153     00:01:11   08:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_FASTQC_(DNA_02_LNUMBER3)
 16695695   6      1       36         hpc-cpu-95      00:01:11   08:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_ALIGN_FASTP_(DNA_02_LNUMBER3)
 16695701   1      1       6          hpc-cpu-153     00:01:11   04:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_PREPARE_REFERENCES_BWA_INDEX_GENOME_(reference.fasta)
+```
+
+
+# June 10th 2025 Tuesday
+command to see the rows of both files as in one line
+```code
+(head -n 1 samplesheet_single.csv && tail -n +2 samplesheet_single.csv && tail -n +2 sssheet.csv) | column -s, -t | less -S
 ```
