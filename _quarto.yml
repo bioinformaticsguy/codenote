@@ -17,6 +17,7 @@ website:
       - section: "Commands"
         contents:
         - href: terminal.qmd
+        - href: vim_tut.qmd
 
 metadata:
   author: "Ali Hassan"
