@@ -525,3 +525,104 @@ rsync test.config bihlogin1:/data/cephfs-1/home/users/alhassa_m/work/run_nf/
 
 nextflow run nf-core/raredisease -revision dev -profile test -params-file params.yaml -ansi-log false > nextflow_2025.06.12.out
 ```
+
+
+# 24th June 2025
+
+So there was some problem with running the pipeline and the was wrror porring up to the peddy as i accidently deleted the nextflow config file. 
+I have created the git hub repo with the current release it is able to finish the pipeline with the following command the files can be found in the repo.
+
+[rare-disease-pipeline v1.0.0-beta release](https://github.com/bioinformaticsguy/rare-disease-pipeline/releases/tag/v1.0.0-beta)
+
+```code
+nextflow run nf-core/raredisease -revision dev -profile test -c custom.config --outdir /data/cephfs1/scratch/groups/kircher/users/alhassa_m/outdir/ -resume        
+```
+
+## Command used for custom config
+
+```code
+ nextflow run nf-core/raredisease -revision dev  -c custom.config --outdir /data/cephfs-1/scratch/groups/kircher/users/alhassa_m/outdir/ -params-file params.yaml --skip_tools gens,germlinecnvcaller 
+
+```
+
+last command that I was trying:
+
+
+```code
+nextflow run nf-core/raredisease -revision dev  -c custom.config --outdir /data/cephfs-1/scratch/groups/kircher/users/alhassa_m/outdir/ -params-file params.yaml --skip_tools gens,germlinecnvcaller --skip_workflows mt_annotation,mt_subsample -resume 
+```
+
+So I ran it with 2.5.0 -revision and it got struck at 15 more steps and then I came back after lunch and restarted it with resule and it finished in 3 minutes.
+
+## Anomly in the pipeline
+I was running the nf-core/raredisease pipeline on a small test dataset with the latest release 2.5.0 (which had previously completed successfully). However, this time the run was taking much longer than expected. Even after a long wait, no new jobs were being spawned by Nextflow, and there was no visible progress. I became skeptical that the pipeline might be stuck.
+
+I eventually terminated the run and restarted it using the -resume flag. Surprisingly, the pipeline then completed in just 3 minutes.
+
+This is quite strange. Initially, I thought this behavior might be related to the BIH cluster environment (e.g. resource issues, scheduler problems), but since it also happens with very small test data, I’m not sure if this is a Nextflow issue or something cluster-specific.
+
+For context, I experienced a similar situation earlier while running the pipeline on real data (~75GB input), where I assumed at the time that it was due to insufficient resources in the config file — but now I suspect there might be more to it.
+
+```python
+nextflow run nf-core/raredisease -revision 2.5.0 -profile test -c custom.config --outdir /data/cephfs-1/scratch/groups/kircher/users/alhassa_m/outdir/ -resume
+
+
+-[nf-core/raredisease] Pipeline completed successfully-
+Completed at: 24-Jun-2025 16:31:30
+Duration    : 3m 21s
+CPU hours   : 7.5 (99.7% cached)
+Succeeded   : 7
+Cached      : 995
+```
+
+
+
+
+## Currently missing files
+when using the following command:
+
+
+```
+ nextflow run nf-core/raredisease -revision 2.5.0 -c custom.config -params-file params.yaml --outdir /data/cephfs-1/scratch/groups/kircher/users/alhassa_m/outdir/
+```
+
+
+### Need to generate correct files for grch38
+```python
+intervals_wgs
+intervals_y
+```
+
+### These are present in the test profile but test profile is not for grch38
+```python
+params.svdb_query_dbs should be set.
+params.vep_filters
+params.variant_catalog not set.
+params.vcfanno_resources not set.
+params.vcfanno_toml not set.
+params.vep_cache not set.
+params.gnomad_af not set.
+params.score_config_snv not set.
+params.variant_consequences_snv not set.
+params.score_config_sv not set.
+params.variant_consequences_sv not set.
+params.mobile_element_references not set.
+params.mobile_element_svdb_annotations not set.
+```
+
+### Resolved by using skip_germlinecnvcaller = true in the config file
+
+```python
+params.ploidy_model not set.
+params.gcnvcaller_model not set.
+params.readcount_intervals not set.
+```
+
+I am also testing it just by using test profile and minimal options in the runn command
+to use it in future to show that pipeline runs fine without errors at certain points
+
+Here is the command and I will update if it successfuly finished or not tomorrow:
+
+```python
+nextflow run nf-core/raredisease -revision 2.5.0 -profile test -c minimal.config --outdir /data/cephfs-1/scratch/groups/kircher/users/alhassa_m/outdir/ 
+```
