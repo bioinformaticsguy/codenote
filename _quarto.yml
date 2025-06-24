@@ -3,6 +3,8 @@ project:
 
 website:
   title: "Documentation"
+  favicon: "assests/logo.png"
+
   sidebar:
       style: "floating"
       search: true
