@@ -626,3 +626,169 @@ Here is the command and I will update if it successfuly finished or not tomorrow
 ```python
 nextflow run nf-core/raredisease -revision 2.5.0 -profile test -c minimal.config --outdir /data/cephfs-1/scratch/groups/kircher/users/alhassa_m/outdir/ 
 ```
+
+So this pipeline got struck and was needed to be canceled and re-run with -resume tag and it finished in 10m.
+
+# 25th June 2025
+Max Suggested a lot of potential things that can help in introducing latency to the nextflow pipeline.
+
+```python
+//uncomment for SLURM cluster
+//process {
+//  withLabel: longtime {
+//    executor='slurm'
+//    //queue='long'
+//    clusterOptions = '-t 3-00:00:0 --mem=6G'
+//  }
+//  withLabel: shorttime {
+//    executor='slurm'
+//    //queue='short'
+//    clusterOptions = '-t 00-01:00:0 --mem=6G'
+//  }
+//  withLabel: highmem {
+//    executor='slurm'
+//    //queue='short'
+//    clusterOptions = '-t 00-20:00:0 --mem=80G'
+//  }
+//}
+
+
+https://github.com/shendurelab/MPRAflow/blob/f67cb0ba334d02b14645b697a03d89e915cd1366/association.nf#L269-L293
+https://www.nextflow.io/docs/latest/executor.html#slurm
+https://www.nextflow.io/docs/latest/reference/process.html#process-cpus
+
+
+executor {
+    name='slurm'
+    queueSize=20
+}
+https://www.nextflow.io/docs/latest/reference/config.html#executor
+executor.pollInterval
+executor.queueSize
+executor.retry.delay
+executor.submitRateLimit
+```
+
+# 26th June 2025
+Latest version of raredisease was released and Today I have noticed that even in the latest version when pipeline completed deepvarient tasks and jobs it got struck. 
+
+```python
+[alhassa_m@hpc-login-1 work]$ /data/cephfs-1/home/users/alhassa_m/work/sh_scripts/specs_usage.sh
+JobID      CPUs   Nodes   Memory(GB) NodeList        RunTime    TimeLimit    JobName
+16838856   1      1       64         hpc-cpu-80      2-16:49:52 7-00:00:00   bash
+16924597   12     1       72         hpc-cpu-201     00:03:44   16:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_CALL_SNV_CALL_SNV_DEEPVARIANT_DEEPVARIANT_(earlycasualcaiman)
+16924586   12     1       72         hpc-cpu-102     00:03:50   16:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_CALL_SNV_CALL_SNV_DEEPVARIANT_DEEPVARIANT_(hugelymodelbat)
+```
+
+So I stopped the job and resumed and figured out that after resuming it started almost 20 jobs:
+
+```python
+[alhassa_m@hpc-login-1 work]$ /data/cephfs-1/home/users/alhassa_m/work/sh_scripts/specs_usage.sh
+JobID      CPUs   Nodes   Memory(GB) NodeList        RunTime    TimeLimit    JobName
+16838856   1      1       64         hpc-cpu-80      2-17:03:39 7-00:00:00   bash
+16925267   6      1       36                         00:00:00   08:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_CALL_REPEAT_EXPANSIONS_SPLIT_MULTIALLELICS_EXP_(hugelymodelbat)
+16925266   6      1       36                         00:00:00   08:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_CALL_REPEAT_EXPANSIONS_SPLIT_MULTIALLELICS_EXP_(earlycasualcaiman)
+16925245   6      1       36         hpc-cpu-87      00:00:10   08:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_ALIGN_CONVERT_MT_BAM_TO_FASTQ_GATK4_REVERTSAM_MT_(slowlycivilbuck)
+16925246   6      1       36         hpc-cpu-207     00:00:10   08:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_ALIGN_CONVERT_MT_BAM_TO_FASTQ_GATK4_REVERTSAM_MT_(earlycasualcaiman)
+16925235   6      1       36         hpc-cpu-87      00:00:14   08:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_ALIGN_CONVERT_MT_BAM_TO_FASTQ_GATK4_REVERTSAM_MT_(hugelymodelbat)
+16925204   6      1       36         hpc-cpu-12      00:00:32   08:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_CALL_STRUCTURAL_VARIANTS_CALL_SV_MANTA_MANTA_(justhusky)
+16925205   12     1       72         hpc-cpu-143     00:00:32   16:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_CALL_SNV_CALL_SNV_DEEPVARIANT_DEEPVARIANT_(earlycasualcaiman)
+16925175   12     1       72         hpc-cpu-142     00:00:34   16:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_CALL_SNV_CALL_SNV_DEEPVARIANT_DEEPVARIANT_(hugelymodelbat)
+16925192   12     1       72         hpc-cpu-143     00:00:34   16:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_CALL_SNV_CALL_SNV_DEEPVARIANT_DEEPVARIANT_(slowlycivilbuck)
+16925268   1      1       6          hpc-cpu-80      00:00:00   04:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_CALL_STRUCTURAL_VARIANTS_CALL_SV_TIDDIT_SVDB_MERGE_TIDDIT_(justhusky)
+16925256   1      1       6          hpc-cpu-82      00:00:04   04:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_CALL_STRUCTURAL_VARIANTS_CALL_SV_CNVNATOR_CNVNATOR_STAT_(hugelymodelbat)
+16925257   1      1       6          hpc-cpu-80      00:00:04   04:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_CALL_STRUCTURAL_VARIANTS_CALL_SV_CNVNATOR_CNVNATOR_STAT_(slowlycivilbuck)
+16925238   1      1       6          hpc-cpu-199     00:00:14   04:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_CALL_STRUCTURAL_VARIANTS_CALL_SV_CNVNATOR_CNVNATOR_HIST_(earlycasualcaiman)
+16925201   1      1       6          hpc-cpu-212     00:00:32   04:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_QC_BAM_PICARD_COLLECTWGSMETRICS_Y_(earlycasualcaiman)
+16925202   1      1       6          hpc-cpu-212     00:00:32   04:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_QC_BAM_PICARD_COLLECTWGSMETRICS_WG_(earlycasualcaiman)
+16925203   1      1       6          hpc-cpu-212     00:00:32   04:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_QC_BAM_PICARD_COLLECTHSMETRICS_(earlycasualcaiman)
+16925176   1      1       6          hpc-cpu-62      00:00:34   04:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_QC_BAM_PICARD_COLLECTWGSMETRICS_WG_(hugelymodelbat)
+16925177   1      1       6          hpc-cpu-201     00:00:34   04:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_QC_BAM_PICARD_COLLECTWGSMETRICS_Y_(hugelymodelbat)
+16925178   1      1       6          hpc-cpu-202     00:00:34   04:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_QC_BAM_PICARD_COLLECTMULTIPLEMETRICS_(hugelymodelbat)
+16925188   1      1       6          hpc-cpu-86      00:00:34   04:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_QC_BAM_PICARD_COLLECTWGSMETRICS_WG_(slowlycivilbuck)
+16925190   1      1       6          hpc-cpu-108     00:00:34   04:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_QC_BAM_PICARD_COLLECTWGSMETRICS_Y_(slowlycivilbuck)
+```
+
+Then it stopped again, and no new jobs were spawned in the BIH cluster at:
+
+```python 
+Plus 36 more processes waiting for tasks…
+Staging foreign file: https://raw.githubusercontent.com/nf-core/test-datasets/raredisease/reference/vcfanno_cadd.tsv.gz
+```
+
+so I was able to complete the test run after resuming it for several times:
+
+```python
+nextflow run nf-core/raredisease -revision 2.6.0 -profile test -c minimal.config --outdir /data/cephfs-1/scratch/groups/kircher/users/alhassa_m/outdir/ -resume
+```
+
+
+In 2.6 version we have following files that are needed to be provided to run the pipeline:
+
+```python
+params.svdb_query_bedpedbs or params.svdb_query_dbs should be set.
+params.vep_filters or params.vep_filters_scout_fmt should be set.
+params.input not set.
+params.variant_catalog not set.
+params.vcfanno_resources not set.
+params.vcfanno_toml not set.
+params.vep_cache not set.
+params.gnomad_af not set.
+params.score_config_snv not set.
+params.variant_consequences_snv not set.
+params.score_config_sv not set.
+params.variant_consequences_sv not set.
+params.score_config_mt not set.
+params.mobile_element_references not set.
+params.mobile_element_svdb_annotations not set.
+params.gens_gnomad_pos not set.
+params.gens_interval_list not set.
+params.gens_pon_female not set.
+params.gens_pon_male not set.
+params.ploidy_model not set.
+params.gcnvcaller_model not set.
+params.readcount_intervals not set.
+```
+
+
+Also these parameters are not good for this version:
+
+```python
+WARN: The following invalid input values have been detected:
+
+* --pipelines_data_base_path: /data/cephfs-1/home/users/alhassa_m/work/run_nf/rare/data/grch38/
+* --skip_germlinecnvcaller: true
+* --skip_peddy: true
+* --skip_haplogrep3: true
+* --skip_vep_filter: true
+* --max_memory: 760 GB
+* --max_cpus: 48
+* --max_time: 3d
+```
+
+So I skipped these tools and subworkflows and reduced the prerequsited to following 8 files only:
+
+```python
+    skip_tools                      = 'fastp,gens,haplogrep3,peddy,germlinecnvcaller,qualimap,eklipse,ngsbits'
+    skip_subworkflows               = "mt_annotation,mt_subsample,me_calling,me_annotation,sv_annotation"
+```
+
+
+```python
+params.vep_filters or params.vep_filters_scout_fmt should be set.
+params.variant_catalog not set.
+params.vcfanno_resources not set.
+params.vcfanno_toml not set.
+params.vep_cache not set.
+params.gnomad_af not set.
+params.score_config_snv not set.
+params.variant_consequences_snv not set.
+```
+
+
+After skipping all the potential workflows, I am able to run the pipeline without need to provide any of the params.file. 
+
+So now I tried to run this with the custom grch38 reference and there was problem with the name of the mitrochondria contg and that is needed to be adjusted in the config file.
+
+- tried different versions of the genome, there was small problem with the MT chromosome name and it was needed to be adjusted.
+- Also there was memory issue with the rule BWAMEM2_INDEX_GENOME as it will be problamatic even with 64 GB so now I am testing it with 256GB memory.
