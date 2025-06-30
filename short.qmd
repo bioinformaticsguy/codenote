@@ -792,3 +792,15 @@ So now I tried to run this with the custom grch38 reference and there was proble
 
 - tried different versions of the genome, there was small problem with the MT chromosome name and it was needed to be adjusted.
 - Also there was memory issue with the rule BWAMEM2_INDEX_GENOME as it will be problamatic even with 64 GB so now I am testing it with 256GB memory.
+
+
+# 27th June 2025 
+
+so I was finally able to finigh the pipeline by using my own config file and my own genome. I had to spend a lot of time to generate the intervals 
+files but eventuallly it worked out. Now I just have to uncomment the different workflow steps one by one to see if everyting works. 
+
+May be I will have to supply some more files.
+
+30th June 2025
+So I have figured that if the work directory is in the scratch then there is a lot of problem with running the pipeline and you will end up in stupid errors.
+
