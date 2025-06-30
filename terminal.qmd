@@ -42,3 +42,8 @@ But don’t use this option on unknown/public servers unless necessary, because 
 ```code
 get -r foldername
 ```
+
+# To download files from BIH
+```python
+rsync bihlogin1:/data/cephfs-1/home/users/alhassa_m/work/run_nf/rare/dag.png dag.png
+```
