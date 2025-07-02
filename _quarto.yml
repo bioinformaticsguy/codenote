@@ -12,14 +12,22 @@ website:
       contents:
       - text: "Home"
         href : index.qmd
+
       - section: "Piplines"
         contents:
         - href: long.qmd
         - href: short.qmd
+     
       - section: "Commands"
         contents:
         - href: terminal.qmd
         - href: vim_tut.qmd
+
+      - section: "Tempo"
+        contents:
+        - href: tempo.qmd
+        - href: scripts.qmd
+
 
 metadata:
   author: "Ali Hassan"
