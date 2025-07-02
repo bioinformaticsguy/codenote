@@ -801,6 +801,75 @@ files but eventuallly it worked out. Now I just have to uncomment the different 
 
 May be I will have to supply some more files.
 
-30th June 2025
+# 30th June 2025
 So I have figured that if the work directory is in the scratch then there is a lot of problem with running the pipeline and you will end up in stupid errors.
+Well after fixing the workdirectory the piepline was able to finish successfully, now I am gonna try to run it on the big data to see what happens.
+
+# 01st July 2025
+So today I was running the pipeline with my real data and figured out that 8 hours is not enough for these two steps so that is why these two are needed to be run with 
+more time and pipeline ran it with 16 hours of time now. 
+
+```python
+[c2/5f9ff8] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_SNV:POSTPROCESS_MT_CALLS:TABIX_ANNOTATE (dnafirst)                                   [100%] 1 of 1 ✔
+[03/4d388e] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_MANTA:MANTA (dnafirst)                                   [ 50%] 1 of 2, failed: 1, retries: 1
+[55/c918f5] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_TIDDIT:TIDDIT_SV (dna_01)                                [ 50%] 1 of 2, failed: 1, retries: 1
+[b4/77797e] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_CNVNATOR:CNVNATOR_RD (dna_01)                            [100%] 1 of 1 ✔
+[cb/3433fe] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_CNVNATOR:CNVNATOR_HIST (dna_01)                          [100%] 1 of 1 ✔
+[77/c0b41b] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_CNVNATOR:CNVNATOR_STAT (dna_01)                          [100%] 1 of 1 ✔
+[03/168c48] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_CNVNATOR:CNVNATOR_PARTITION (dna_01)                     [100%] 1 of 1 ✔
+[6c/28733f] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_CNVNATOR:CNVNATOR_CALL (dna_01)                          [100%] 1 of 1 ✔
+[58/d014e1] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_CNVNATOR:CNVNATOR_CONVERT2VCF (dna_01)                   [100%] 1 of 1 ✔
+[53/e1c580] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_CNVNATOR:INDEX_CNVNATOR (dna_01)                         [100%] 1 of 1 ✔
+[a4/c775aa] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_CNVNATOR:BCFTOOLS_VIEW_CNVNATOR (dna_01)                 [100%] 1 of 1 ✔
+[18/b8cda5] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_CNVNATOR:SVDB_MERGE_CNVNATOR (dnafirst)                  [100%] 1 of 1 ✔
+[b4/80d5a1] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_MT:MT_DELETION (dna_01)                                  [100%] 1 of 1 ✔
+Plus 20 more processes waiting for tasks…
+[17/d0daa7] NOTE: Process `NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_MANTA:MANTA (dnafirst)` terminated with an error exit status (140) -- Execution is retried (1)
+[52/f4641b] NOTE: Process `NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_TIDDIT:TIDDIT_SV (dna_01)` terminated with an error exit status (140) -- Execution is retried (1)
+```
+
+## Proof
+```python
+[alhassa_m@hpc-login-1 ~]$ /data/cephfs-1/home/users/alhassa_m/work/sh_scripts/specs_usage.sh
+JobID      CPUs   Nodes   Memory(GB) NodeList        RunTime    TimeLimit    JobName
+16952976   1      1       56         hpc-cpu-78      2-05:06:20 7-00:00:00   bash
+16982476   6      1       36         hpc-cpu-4       07:47:52   08:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_CALL_STRUCTURAL_VARIANTS_CALL_SV_TIDDIT_TIDDIT_SV_(dna_01)
+16982480   12     1       72         hpc-cpu-95      07:47:52   16:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_CALL_SNV_CALL_SNV_DEEPVARIANT_DEEPVARIANT_(dna_01)
+16982481   6      1       36         hpc-cpu-96      07:47:52   08:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_CALL_STRUCTURAL_VARIANTS_CALL_SV_MANTA_MANTA_(dnafirst)
+16938187   1      1       16         hpc-cpu-60      4-04:21:19 7-00:00:00   bash
+```
+
+Now the new srun requests are as follow
+```python
+[alhassa_m@hpc-login-1 ~]$ /data/cephfs-1/home/users/alhassa_m/work/sh_scripts/specs_usage.sh
+JobID      CPUs   Nodes   Memory(GB) NodeList        RunTime    TimeLimit    JobName
+16952976   1      1       56         hpc-cpu-78      2-05:25:12 7-00:00:00   bash
+16989740   12     1       72         hpc-cpu-59      00:07:19   16:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_CALL_STRUCTURAL_VARIANTS_CALL_SV_MANTA_MANTA_(dnafirst)
+16989741   12     1       72         hpc-cpu-108     00:07:19   16:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_CALL_STRUCTURAL_VARIANTS_CALL_SV_TIDDIT_TIDDIT_SV_(dna_01)
+16982480   12     1       72         hpc-cpu-95      08:06:44   16:00:00     nf-NFCORE_RAREDISEASE_RAREDISEASE_CALL_SNV_CALL_SNV_DEEPVARIANT_DEEPVARIANT_(dna_01)
+16938187   1      1       16         hpc-cpu-60      4-04:40:11 7-00:00:00   bash
+```
+
+# 02nd July 2025 Wednesday
+
+When I came to office finally the pipeline finished with one real sample saying... 
+
+```python
+-[nf-core/raredisease] Pipeline completed successfully-
+Completed at: 02-Jul-2025 01:28:49
+Duration    : 1d 8h 29m 7s
+CPU hours   : 597.5 (16% failed)
+Succeeded   : 83
+Failed      : 2
+```
+
+The two failed tasks are the tasks that failed beause of less time these tasks were:
+
+```python
+[03/4d388e] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_MANTA:MANTA (dnafirst)                                   [100%] 2 of 2, failed: 1, retries: 1 ✔
+[55/c918f5] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_TIDDIT:TIDDIT_SV (dna_01)                                [100%] 2 of 2, failed: 1, retries: 1 ✔
+```
+
+So it is better to assign them 16 hours of time. 
+
 
