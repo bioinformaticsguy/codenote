@@ -7,3 +7,4 @@ This script should generate a csv file, [Click Here](files/scripts/script.py){ta
 
 # Script to run some script in OMICS
 [Click Here](files/scripts/omics_count_motif.slurm){target="_blank"} 
+
