@@ -1,0 +1,396 @@
+---
+title: "Tempo Notes"
+---
+
+
+
+
+
+I have been able to run a pipeline that finds SNVs, SV tandem repets and indels. I have also found some overlapping genes from genelists related to DSD, now the question is that if we just have to pin point the genes which have been previously related to DSD then what is the point of spending so much money on wgs of long and short reads. Can you suggest me how can I prioritize the varients in different tiers so that I can narrow down the varients to novel varients that might be potential cause of the DSD phenotype?
+
+
+ChatGPT said:
+Fantastic question—this goes right to the heart of why you do whole-genome sequencing (WGS) with both short and long reads, rather than just targeted gene panels.
+
+👉 You are absolutely right:
+If your only goal was to find known pathogenic variants in a small set of known DSD genes, you wouldn’t need WGS—you could do an exome, or even a cheap targeted panel.
+
+✅ The reason you’re investing in WGS is:
+
+To find novel or complex variants in known genes that would be missed by panels.
+
+To discover new candidate genes or regulatory regions.
+
+To resolve structural variants (SVs), repeats, and noncoding variants that cannot be reliably detected otherwise.
+
+So your question—how do I prioritize variants into tiers to narrow down truly interesting findings?—is exactly the right next step.
+
+Below I’ll give you a practical framework you can adapt to your project.
+
+🟢 🎯 A Tiered Variant Prioritization Strategy
+Think about four levels of evidence:
+
+🎯 Tier 1: Known pathogenic or likely pathogenic variants in known DSD genes
+What goes here?
+
+ClinVar Pathogenic/Likely Pathogenic variants.
+
+HGMD disease-causing mutations.
+
+Well-established disease-causing SVs (e.g., deletions of SRY, duplications of SOX9 enhancer).
+
+How do you find them?
+
+Annotate with ClinVar, HGMD (if you have a license), and DECIPHER.
+
+Use a gene list of known DSD genes.
+
+Check if the variant matches known mechanisms (e.g., LOF, missense hotspot).
+
+🎯 Tier 2: Rare, predicted damaging variants in known DSD genes
+What goes here?
+
+Rare variants (MAF <0.1% in gnomAD) in known DSD genes.
+
+Protein-truncating variants (nonsense, frameshift, canonical splice).
+
+Missense variants predicted deleterious (e.g., CADD >25, REVEL >0.6).
+
+Potential SVs disrupting gene structure.
+
+Why does this tier matter?
+
+These may be previously undescribed pathogenic variants.
+
+You can look for segregation in the family.
+
+They often end up as VUS (variants of uncertain significance) but can be strong candidates.
+
+🎯 Tier 3: Rare, predicted damaging variants in genes not previously linked to DSD but plausible candidates
+What goes here?
+
+Genes expressed in relevant tissues (gonad, hypothalamus, adrenal).
+
+Genes involved in pathways relevant to sex development.
+
+De novo variants or biallelic LOF variants in trios.
+
+How do you find them?
+
+Use tools like Exomiser, Genomiser, or PhenIX that score variants based on phenotype similarity.
+
+Leverage gene expression databases (e.g., GTEx).
+
+Annotate with pathway information (Reactome, KEGG).
+
+🎯 Tier 4: Noncoding and regulatory variants
+What goes here?
+
+Variants in promoters, enhancers, UTRs, and known regulatory elements.
+
+SVs disrupting TADs (topologically associating domains) or long-range enhancers.
+
+Tandem repeat expansions.
+
+How do you prioritize?
+
+Annotate with:
+
+ENCODE/ROADMAP regulatory regions.
+
+Candidate cis-regulatory elements from GeneHancer.
+
+CADD and other noncoding scores.
+
+Focus on:
+
+Variants affecting regulatory elements of known DSD genes.
+
+SV breakpoints disrupting regulatory architecture.
+
+🟢 🚀 Putting It All Together: A Practical Workflow
+Here’s how you can proceed:
+
+✅ Step 1: Variant Annotation
+
+Annotate SNVs/indels with:
+
+gnomAD frequency.
+
+ClinVar / HGMD pathogenicity.
+
+CADD, REVEL, SpliceAI.
+
+Gene information (known DSD vs. novel).
+
+Annotate SVs with:
+
+Overlapping genes.
+
+Predicted impact (loss, duplication, inversion).
+
+Known pathogenic regions (DECIPHER).
+
+Annotate noncoding variants with:
+
+Regulatory features (ENCODE, GeneHancer).
+
+Distance to nearest DSD gene.
+
+✅ Step 2: Filtering
+
+Filter out common variants (MAF >1%).
+
+Filter to protein-altering or predicted-damaging.
+
+For SVs, focus on rare events overlapping coding or regulatory regions.
+
+✅ Step 3: Tiering
+
+Label each variant by tier (1–4).
+
+Prioritize Tier 1 and Tier 2 first.
+
+For Tier 3 and Tier 4, look for:
+
+Segregation in the family.
+
+De novo events.
+
+Multiple variants affecting the same pathway.
+
+✅ Step 4: Manual Review
+
+Inspect promising variants in IGV to confirm quality.
+
+Check literature for prior reports.
+
+Consider additional assays (e.g., qPCR for CNV validation).
+
+🟢 🚩 Why WGS is Worth It
+Even if you end up focusing on known genes, WGS gives you:
+
+Resolution of SVs and repeats (esp. with long reads).
+
+Detection of regulatory variants.
+
+The possibility of discovering new genes involved in DSD.
+
+Comprehensive negative evidence (“we really looked everywhere”).
+
+🟢 Example Tools to Help
+You can combine these resources:
+
+Variant Effect Predictor (VEP) + plugins.
+
+Exomiser (for phenotype-based ranking).
+
+SVScore or AnnotSV (for SV annotation).
+
+CADD and SpliceAI for functional impact.
+
+IGV for visualization.
+
+If you share more about:
+
+Your cohort size.
+
+Whether you have trios.
+
+Specific tools you are using.
+
+…I can help you refine a step-by-step prioritization pipeline tailored to your data.
+
+
+
+
+
+
+
+
+You said:
+So I have a cohort of 50 short read wgs samples and I also have upcoming 50 more samples of short read but those samples are not here yet, these samples are mostly unrelated. On the other hand I have 4 trios that have been sequenced by PacBio long read. I am using raredisease pipeline for shortread and PacBio WDL pipeline for ling read initial analysis. 
+
+
+ChatGPT said:
+Perfect—thank you for this clear context.
+This is exactly the sort of setup where combining short-read WGS and long-read WGS can be most powerful:
+
+✅ Short-read WGS (50 + 50 samples)
+
+Strengths: high coverage, SNVs, small indels, and some CNVs/SVs (but often fragmented or hard to resolve).
+
+Challenges: repetitive regions, complex SVs, tandem repeats.
+
+✅ Long-read WGS (PacBio) trios
+
+Strengths: much better SV detection, phasing, resolving repeats, non-coding and structural context.
+
+Challenges: cost, lower coverage (~15–30×), higher per-read error rate (though HiFi helps).
+
+✅ Your opportunity
+Because most of your cohort is short-read and only a few trios are long-read, you can use the trios to:
+
+Find novel complex alleles/SVs that might be shared across unrelated samples.
+
+Build a reference catalog of candidate pathogenic loci to re-screen in the other samples.
+
+🟢 How to Prioritize Variants in This Mixed Cohort
+Below, I’ll lay out a practical tiering strategy, adapted to your setup:
+
+🎯 Tier 1: Known pathogenic variants
+Use ClinVar, HGMD, DECIPHER, and known DSD gene lists.
+
+Apply this to both short-read and long-read data:
+
+For short-read: high-confidence SNVs, small indels, known CNVs.
+
+For long-read: also look for previously described pathogenic SVs.
+
+🎯 Tier 2: Rare predicted damaging variants in known DSD genes
+Rare (MAF <0.1%).
+
+Predicted damaging (CADD >25, REVEL >0.6, SpliceAI >0.5).
+
+Exonic or canonical splice site.
+
+Important: Here you can integrate SV calls in known genes that would be missed in short-read data.
+
+🎯 Tier 3: Novel SVs and tandem repeat expansions
+This is where long-read WGS shines.
+
+Use PacBio trios to find:
+
+De novo structural variants.
+
+Repeat expansions (e.g., in regulatory regions).
+
+Inversions or insertions disrupting known genes.
+
+Cross-check whether similar regions show evidence of CNVs in the short-read cohort (even if they’re fragmented).
+
+🎯 Tier 4: Noncoding/regulatory variants
+This is your frontier discovery set:
+
+Variants in enhancers/promoters of known DSD genes (e.g., SOX9, WT1, SRY).
+
+Breakpoints of SVs disrupting TADs.
+
+Annotate using:
+
+ENCODE candidate cis-regulatory elements.
+
+FANTOM enhancers.
+
+CADD noncoding scores.
+
+🎯 Tier 5: Candidate genes and novel loci
+De novo or recessive (biallelic) variants in genes not yet known to cause DSD but:
+
+Expressed in gonadal tissues.
+
+Part of sex determination pathways (WNT, Hedgehog, NR5A1-related).
+
+Functionally plausible based on literature.
+
+Consider these strong candidates for further functional work.
+
+🟢 Suggested Prioritization Workflow
+Here’s a step-by-step approach to keep things organized:
+
+Step 1: Short-read pipeline output
+From nf-core raredisease:
+✅ SNV/indel VCF
+✅ CNV calls (gCNV)
+✅ SV calls (Manta, CNVnator)
+
+Post-processing:
+
+Annotate with VEP + plugins:
+
+CADD
+
+SpliceAI
+
+ClinVar
+
+Filter:
+
+MAF <0.1%
+
+Predicted damaging
+
+Impactful consequence (stop, frameshift, canonical splice, missense)
+
+Step 2: Long-read pipeline output
+From PacBio WDL:
+✅ SNV/indel VCF
+✅ SV VCF (pbsv or Sniffles)
+✅ Tandem repeat expansions (STRique, Tandem-genotypes)
+
+Post-processing:
+
+Annotate SVs (AnnotSV)
+
+Cross-reference against:
+
+Known pathogenic SVs
+
+Overlap with DSD genes
+
+Regulatory regions
+
+For trios, identify de novo events
+
+Step 3: Family-based filtering (trios)
+For the 4 PacBio trios:
+
+Prioritize de novo and compound heterozygous variants.
+
+Look for recessive (biallelic) hits in known or plausible genes.
+
+Combine SV and SNV calls to detect compound disruptions (e.g., deletion on one allele + SNV on the other).
+
+Step 4: Cross-cohort comparison
+Any interesting variant or SV in the trios:
+
+Re-check in the 50 short-read samples (and the upcoming 50).
+
+Even if you can’t fully resolve SVs in short-read data, you may find suggestive coverage drops or split reads.
+
+Step 5: Triage into tiers
+Label variants according to tiers (1–5).
+
+Tiers 1–2: Clinical reporting candidates.
+
+Tiers 3–4: Functional follow-up candidates.
+
+Tier 5: Research discovery candidates.
+
+Step 6: Manual curation
+Visualize all high-priority calls in IGV.
+
+Confirm de novo status and read support.
+
+Check literature and databases (PubMed, ClinVar, DECIPHER).
+
+🟢 Why This Matters
+If you only focused on Tier 1 (known pathogenic SNVs), you’d miss:
+✅ Cryptic deletions (e.g., SOX9 enhancers)
+✅ Repeat expansions (some known in DSD and neurodevelopmental disorders)
+✅ Inversions disrupting genes
+✅ Complex alleles (e.g., multiple tandem duplications)
+
+This is the real reason you spent money on WGS with both technologies:
+to create the most comprehensive variant discovery possible.
+
+🟢 Next Steps
+If you’d like, I can help you:
+
+Draft an exact variant filtering script (e.g., using bcftools, jq, awk).
+
+Set up Exomiser or PhenIX phenotype-driven prioritization.
+
+Define a DSD gene panel for Tier 1/Tier 2 filtering.
+
+Just share a bit more about your tools and compute environment, and we’ll build it step by step.
