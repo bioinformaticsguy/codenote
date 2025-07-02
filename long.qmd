@@ -128,3 +128,11 @@ vscode-remote://ssh-remote%2Bheadnode01.omics.uni-luebeck.de/data/humangen_kirch
 /data/humangen_kircherlab/hassan/HiFi-human-WGS-WDL/000_Old_Outputs/20250506_121608_humanwgs_family_2ndTrio_CN/out/stats_file/SecondTrio.stats.txt
 
 ```
+
+# 30th June 2025
+
+Today I created the small snakemake workflow so that the files needed are automatically generated which are missing. 
+Now the gene lists are automatically created. I need to update the report, just add some headings. so that that we know what is needed to 
+be filled in the report. Tomorrow I will also add the quarto report thingy so that the final html file is also generated. There
+was some problem with the environments so I will generate envs folder and add specific envs so that the scripts can also run without having 
+any env except just a snakemake env.
