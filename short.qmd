@@ -872,4 +872,63 @@ The two failed tasks are the tasks that failed beause of less time these tasks w
 
 So it is better to assign them 16 hours of time. 
 
+# 03 July 2025 
+So Last night I created a quick config as well as params file to use the small reference for debuggging purpose. I noticed that it ran fine in 15  minutes and then all of a sudden
+I started reciving error messages as below and when I exited from that node I got this edit with eexit code 1. Normal exit from the node is also shown below:
+
+```python
+Command exit status:
+  127
+
+Command output:
+  (empty)
+
+Command error:
+  .command.sh: line 4: bwa-mem2: command not found
+
+Work dir:
+  /data/cephfs-1/work/groups/kircher/users/alhassa_m/run_nf/rare/workdir/6c/9f7b3519ec4f08ad3023a6e558dae2
+
+Tip: you can replicate the issue by changing to the process work dir and entering the command `bash .command.run`
+
+ -- Check '.nextflow.log' file for details
+ERROR ~ class java.util.ArrayList cannot be cast to class java.util.Map$Entry (java.util.ArrayList and java.util.Map$Entry are in module java.base of loader 'bootstrap')
+
+ -- Check script '/data/cephfs-1/home/users/alhassa_m/.nextflow/assets/nf-core/raredisease/./workflows/../subworkflows/local/./call_sv_manta/main.nf' at line: 34 or see '.nextflow.log' file for more details
+ERROR ~ Pipeline failed. Please refer to troubleshooting docs: https://nf-co.re/docs/usage/troubleshooting
+
+ -- Check '.nextflow.log' file for details
+ERROR ~ Pipeline failed. Please refer to troubleshooting docs: https://nf-co.re/docs/usage/troubleshooting
+
+ -- Check '.nextflow.log' file for details
+
+(nf) [alhassa_m@hpc-cpu-98 rare]$ exit
+exit
+srun: error: hpc-cpu-98: task 0: Exited with exit code 1
+[alhassa_m@hpc-login-1 ~]$ srun -p medium --time 7-00:00 --mem=56G --immediate=60 --pty bash -i
+[alhassa_m@hpc-cpu-115 ~]$ exit
+exit
+[alhassa_m@hpc-login-1 ~]$ 
+```
+
+# 04 July 2025
+
+- Tried to solve this by re-requestng the new node. (Failed)
+- Then I deleted the workdir (failed)
+- Then I deleted the singularity cache. (failed)
+- Then I gave it profile singularity it is apparently working, lets hope it finishes running.
+
+but I got the following warning that is needed to be fixed. 
+
+```python
+WARN: Singularity cache directory has not been defined -- Remote image will be stored in the path: /data/cephfs-1/work/groups/kircher/users/alhassa_m/run_nf/rare/workdir/singularity -- Use the environment variable NXF_SINGULARITY_CACHEDIR to specify a different location
+```
+
+Finally the pipeline finished with the following command:
+
+```python
+nextflow run nf-core/raredisease -revision 2.6.0 -c quick.config -params-file quick.yaml -profile singularity    
+```
+
+
 
