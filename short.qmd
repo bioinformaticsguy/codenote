@@ -1088,3 +1088,16 @@ gunzip gnomad.v4.1.sv.sites.vcf.gz
 echo "filename,in_freq_info_key,in_allele_count_info_key,out_freq_info_key,out_allele_count_info_key,use_in_freq_filter" > svdb_querydb_files.csv
 echo "$(pwd)/gnomad.v4.1.sv.sites.vcf,AF,AC,gnomad_svAF,gnomad_svAC,1" >> svdb_querydb_files.csv
 ```
+
+###  variant_consequences_snv        
+Just downloaded from the sample files
+```python
+= params.pipelines_testdata_base_path + '/reference/variant_consequences_v2.txt'
+```
+
+### params.vcfanno_resources not set.
+```python
+params.vcfanno_toml not set.
+params.gnomad_af not set.
+params.score_config_snv not set.
+```
