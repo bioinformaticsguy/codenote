@@ -54,3 +54,13 @@ aria2c -x16 -s16 https://ftp.ensembl.org/pub/release-114/variation/indexed_vep_c
 ```
 
 
+# Mounting the external drive in Ubuntu Terminal
+```python
+sudo mount -t drvfs E: /mnt/usb
+```
+
+# Uploading VIA rsync
+
+```python
+rsync -avh --progress /mnt/usb/X208SC25055632-Z01-F001_multipath/X208SC25055632-Z01-F001_01/ hassan@headnode01.omics.uni-luebeck.de:/data/humangen_kircherlab/hassan/novogene/
+```
