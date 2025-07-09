@@ -1029,4 +1029,62 @@ ERROR ~ Pipeline failed. Please refer to troubleshooting docs: https://nf-co.re/
 ```
 
 
+# 6th July 2025
+## Generation of Files
+### params.mobile_element_references not set.
 
+```python
+1️⃣ Download RepeatMasker annotations from UCSC Table Browser:
+
+Go to:
+UCSC Table Browser
+
+Settings:
+
+clade: Mammal
+
+genome: Human
+
+assembly: GRCh38/hg38
+
+group: Repeats
+
+track: RepeatMasker
+
+table: rmsk
+
+region: genome
+
+output format: BED
+
+Filter for repeat class you need:
+
+
+# Download rmsk from UCSC Table Browser as rmsk.bed
+# Example filtering and sorting
+awk '$4 ~ /Alu/' rmsk.bed | sort -k1,1 -k2,2n > grch38_alu.bed
+awk '$4 ~ /L1/' rmsk.bed | sort -k1,1 -k2,2n > grch38_l1.bed
+awk '$4 ~ /SVA/' rmsk.bed | sort -k1,1 -k2,2n > grch38_sva.bed
+awk '$4 ~ /ERV1|HERV/' rmsk.bed | sort -k1,1 -k2,2n > grch38_herv.bed
+
+
+BASE_PATH=$(pwd)
+echo -e "type\tpath" > mobile_element_references_grch38.tsv
+echo -e "L1\t${BASE_PATH}/grch38_l1.bed" >> mobile_element_references_grch38.tsv
+echo -e "SVA\t${BASE_PATH}/grch38_sva.bed" >> mobile_element_references_grch38.tsv
+echo -e "ALU\t${BASE_PATH}/grch38_alu.bed" >> mobile_element_references_grch38.tsv
+echo -e "HERV\t${BASE_PATH}/grch38_herv.bed" >> mobile_element_references_grch38.tsv
+
+```
+
+
+### params.mobile_element_svdb_annotations not set.
+```python
+wget https://gnomad-public-us-east-1.s3.amazonaws.com/release/4.1/genome_sv/gnomad.v4.1.sv.sites.vcf.gz
+gunzip gnomad.v4.1.sv.sites.vcf.gz
+
+
+# Use following script to download the file:
+echo "filename,in_freq_info_key,in_allele_count_info_key,out_freq_info_key,out_allele_count_info_key,use_in_freq_filter" > svdb_querydb_files.csv
+echo "$(pwd)/gnomad.v4.1.sv.sites.vcf,AF,AC,gnomad_svAF,gnomad_svAC,1" >> svdb_querydb_files.csv
+```
