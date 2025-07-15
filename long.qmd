@@ -136,3 +136,17 @@ Now the gene lists are automatically created. I need to update the report, just 
 be filled in the report. Tomorrow I will also add the quarto report thingy so that the final html file is also generated. There
 was some problem with the environments so I will generate envs folder and add specific envs so that the scripts can also run without having 
 any env except just a snakemake env.
+
+# 14 July 2025
+## Meet With Niki
+1. First we check if folowing file is annotated, after converting it to tsv.
+```python
+/data/humangen_kircherlab/hassan/HiFi-human-WGS-WDL/000_Old_Outputs/20250505_090954_humanwgs_family_3rd_156/out/tertiary_small_variant_filtered_vcf/ThirdTrio_156.joint.GRCh38.small_variants.phased.norm.slivar.vcf.gz
+```
+
+2. If yes then Check how many coding varinets are there are coding. (I expect something like 26.000 Variants per individual (Unfiltered))
+
+3. Then we can apply filtered to allele frequencies less than 0.01
+
+4. prediction if they are deleterious (Think which tool to use)
+
