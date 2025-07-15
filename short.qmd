@@ -1101,3 +1101,76 @@ params.vcfanno_toml not set.
 params.gnomad_af not set.
 params.score_config_snv not set.
 ```
+
+# 15th Jully 2025
+
+```python
+https://raw.githubusercontent.com/nf-core/test-datasets/raredisease/reference/rank_model_snv.ini
+```
+This file we are using as it is as it appears to be not related to GrCh38.
+
+
+So I started with working on mt_annotation and then because of the CADD files I moved to SNV annotation and now I have some problem as below:
+
+
+```python
+[5e/db798b] NFCORE_RAREDISEASE:RAREDISEASE:ANNOTATE_MOBILE_ELEMENTS:PICARD_SORTVCF (dnaSfirst)                       [100%] 1 of 1, cached: 1 ✔
+[0a/f2f4d9] NFCORE_RAREDISEASE:RAREDISEASE:GENERATE_CYTOSURE_FILES:TIDDIT_COV_VCF2CYTOSURE (dnaS_01)                 [100%] 1 of 1, cached: 1 ✔
+[-        ] NFCORE_RAREDISEASE:RAREDISEASE:MULTIQC                                                                   [  0%] 0 of 1
+Plus 53 more processes waiting for tasks…
+Execution cancelled -- Finishing pending tasks before exit
+-[nf-core/raredisease] Pipeline completed with errors-
+ERROR ~ Error executing process > 'NFCORE_RAREDISEASE:RAREDISEASE:ANNOTATE_GENOME_SNVS:BCFTOOLS_VIEW (dnaSfirst)'
+
+Caused by:
+  Process `NFCORE_RAREDISEASE:RAREDISEASE:ANNOTATE_GENOME_SNVS:BCFTOOLS_VIEW (dnaSfirst)` terminated with an error exit status (255)
+
+
+Command executed:
+
+  bcftools view \
+      --output dnaSfirst_rhocall_filter_0001-scattered.vcf.gz \
+       \
+       \
+       \
+      --output-type z --exclude "INFO/GNOMADAF > 0.70 | INFO/GNOMADAF_popmax > 0.70"  \
+      --threads 6 \
+      dnaSfirst_rhocall_vcfanno_0001-scattered.vcf.gz
+
+  cat <<-END_VERSIONS > versions.yml
+  "NFCORE_RAREDISEASE:RAREDISEASE:ANNOTATE_GENOME_SNVS:BCFTOOLS_VIEW":
+      bcftools: $(bcftools --version 2>&1 | head -n1 | sed 's/^.*bcftools //; s/ .*$//')
+  END_VERSIONS
+
+Command exit status:
+  255
+
+Command output:
+  (empty)
+
+Command error:
+  INFO:    Converting SIF file to temporary sandbox...
+  Error: cannot use arithmetic operators to compare strings and numbers
+  INFO:    Cleaning up image...
+
+Work dir:
+  /data/cephfs-1/work/groups/kircher/users/alhassa_m/run_nf/rare/workdir/67/5ea006f1f346f39f3df89b4ade84e3
+
+Container:
+  /data/cephfs-1/home/users/alhassa_m/scratch/data_out_nf/singlecash/depot.galaxyproject.org-singularity-bcftools-1.20--h8b25389_0.img
+
+Tip: you can replicate the issue by changing to the process work dir and entering the command `bash .command.run`
+
+ -- Check '.nextflow.log' file for details
+ERROR ~ Pipeline failed. Please refer to troubleshooting docs: https://nf-co.re/docs/usage/troubleshooting
+
+ -- Check '.nextflow.log' file for details
+
+(nf) [alhassa_m@hpc-cpu-173 rare]$
+```
+
+
+I think I wil have to check the files that are avalible for test and to see if my files have the same format! 
+
+also I have noticed that the folder directory is quite messed up because of several folders so I need to fix that too..
+

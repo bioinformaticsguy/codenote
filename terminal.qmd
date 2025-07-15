@@ -64,3 +64,18 @@ sudo mount -t drvfs E: /mnt/usb
 ```python
 rsync -avh --progress /mnt/usb/X208SC25055632-Z01-F001_multipath/X208SC25055632-Z01-F001_01/ hassan@headnode01.omics.uni-luebeck.de:/data/humangen_kircherlab/hassan/novogene/
 ```
+
+Use this if transfer breaks.
+```python
+rsync -avh --partial --inplace --progress /mnt/usb/X208SC25055632-Z01-F001_multipath/X208SC25055632-Z01-F001_01/ hassan@headnode01.omics.uni-luebeck.de:/data/humangen_kircherlab/hassan/novogene/
+```
+
+# Checking the md5 check sums.
+
+```python
+(base) hassan@node24:/data/humangen_kircherlab/hassan/novogene/md5check$ grep '\.fq\.gz$' md5sums_all.txt | awk '{gsub(/^\.\//, "", $2); print $1 "\t" $2}' | sort > my_c_md5.txt
+(base) hassan@node24:/data/humangen_kircherlab/hassan/novogene/md5check$ grep '\.fq\.gz$' MD5.txt | awk '{print $1 "\t" $2}' > lab_c_md5.txt
+cmp -s lab_c_md5.txt my_c_md5.txt && echo "✅ All lines match!" || echo "❌ Differences found!"
+✅ All lines match!
+```
+
