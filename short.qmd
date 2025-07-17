@@ -1174,3 +1174,9 @@ I think I wil have to check the files that are avalible for test and to see if m
 
 also I have noticed that the folder directory is quite messed up because of several folders so I need to fix that too..
 
+
+# 17th July 2024
+- Check if vcfanno_resoursces file is being used.
+- clean up the directory.
+- Check check gnomad file for chromosome 11.
+- check the file for chromosome M. 
