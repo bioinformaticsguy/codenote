@@ -1177,6 +1177,8 @@ also I have noticed that the folder directory is quite messed up because of seve
 
 # 17th July 2024
 - Check if vcfanno_resoursces file is being used.
+  - Yes (now we need to fix that).
 - clean up the directory.
+  - Not yet 
 - Check check gnomad file for chromosome 11.
 - check the file for chromosome M. 
