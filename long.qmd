@@ -144,9 +144,108 @@ any env except just a snakemake env.
 /data/humangen_kircherlab/hassan/HiFi-human-WGS-WDL/000_Old_Outputs/20250505_090954_humanwgs_family_3rd_156/out/tertiary_small_variant_filtered_vcf/ThirdTrio_156.joint.GRCh38.small_variants.phased.norm.slivar.vcf.gz
 ```
 
-2. If yes then Check how many coding varinets are there are coding. (I expect something like 26.000 Variants per individual (Unfiltered))
+2. If yes then Check how many coding varinets are there are coding. (I expect something like 26.000 Variants per individual (Unfiltered)).
 
-3. Then we can apply filtered to allele frequencies less than 0.01
+3. Then we can apply filtered to allele frequencies less than 0.01.
 
-4. prediction if they are deleterious (Think which tool to use)
+4. Prediction if they are deleterious (Think which tool to use).
 
+
+# 18th July 2025
+
+Today we are running the long read pipeline with the latest release 3.0.1 which has sawfish integerated.
+
+## Step 1 (Download Pipeline)
+I cloned the new version of the pipeline to a new folder through the following command. This command was found from this [link](https://github.com/PacificBiosciences/HiFi-human-WGS-WDL/tree/v3.0.1). 
+
+```bash
+git clone \
+  --depth 1 --branch v3.0.1 \
+  --recursive \
+  https://github.com/PacificBiosciences/HiFi-human-WGS-WDL.git
+```
+
+## Step 2 (Create conda env)
+I created a new conda env with the following command and activated it.
+
+```bash
+conda create -n latest_wdl
+conda activate latest_wdl
+```
+
+## Step 3 (Install MiniWDL and MiniWDL-slurm)
+It is important to mention the conda channel otherwise conda will end up in infinite loop. Moreover you can check the instalation and get a cool message at the end of the installation.
+
+```bash
+conda install -c conda-forge miniwdl 
+miniwdl run_self_test
+```
+
+```bash
+{
+  "dir": "/tmp/miniwdl_run_self_test_ybtoold8/20250718_152641_hello_caller",
+  "outputs": {
+    "hello_caller.message_files": [
+      "/tmp/miniwdl_run_self_test_ybtoold8/20250718_152641_hello_caller/out/message_files/0/Alyssa P. Hacker.txt",
+      "/tmp/miniwdl_run_self_test_ybtoold8/20250718_152641_hello_caller/out/message_files/1/Ben Bitdiddle.txt"
+    ],
+    "hello_caller.messages": [
+      "Hello, Alyssa P. Hacker!",
+      "Hello, Ben Bitdiddle!"
+    ]
+  }
+}
+
+```
+
+
+For miniwdl-slurm you can use the following command to install it.
+
+```bash
+pip install miniwdl-slurm
+```
+
+
+## Step 4 (Put MiniWDL Config file)
+This config [file](files/miniwdl.cfg){target="_blank"} with cortrection of ```container_backend = slurm_singularity``` to ```container_backend = singularity``` is needed to be placed in the fillowing path.
+
+
+```bash
+[file](files/minimal.cfg){target="_blank"}
+```
+
+
+## Step 5 (Download the resourse Bundle)
+
+The resourse bundle can be downloaded form this [link](https://github.com/PacificBiosciences/HiFi-human-WGS-WDL/blob/v3.0.1/docs/backend-hpc.md#:~:text=Reference%20data%20is%20hosted%20on%20Zenodo%20at%2010.5281/zenodo.15750792.%20Download%20the%20reference%20data%20bundle%20and%20extract%20it%20to%20a%20location%20on%20your%20HPC%2C%20then%20update%20the%20input%20template%20file%20with%20the%20path%20to%20the%20reference%20data.).
+
+Once download extract it using the following command.
+
+```bash
+tar -xvf hifi-wdl-resources-v3.0.0.tar
+```
+
+## Step 6 (Fill Out Family Inputs JSON file and Paths file)
+The following file is needed to be updated like this [file](files/family.hpc.inputs.jason){target="_blank"}.
+
+```bash
+backends/hpc/family.hpc.inputs.json
+```
+
+Also the paths are needed to be updated in the following files.
+
+```bash
+backends/hpc/family.hpc.inputs.json
+backends/hpc/GRCh38.tertiary_map.v3p0p0.hpc.tsv
+```
+
+Step 7 (Run the Pipeline)
+
+Try to get  64 cpu cores and 256 GB of RAM in a screen session. The following command can be used to request the resources.
+
+```bash
+hassan@headnode01:/data/humangen_kircherlab/hassan/wdl_latest/HiFi-human-WGS-WDL$ srun --partition=debug  --mem=128G -c 48 --pty bash
+srun: job 1487609 queued and waiting for resources
+```
+
+We tried this much and the cluster is moody at this point.

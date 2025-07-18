@@ -1,0 +1,46 @@
+{
+  "humanwgs_family.family": {
+    "family_id": "third_trio_156",
+    "samples": [
+      {
+        "sample_id": "S009_X47-24_WGS-Rv-0155",
+        "hifi_reads": [
+          "/data/humangen_kircherlab/hassan/bioscientia/r84149R1_20241107_141501/S009_X47-24_WGS-Rv-0155.hifi_reads.bam"
+        ],
+        "affected": true,
+        "sex": null,
+        "father_id": "String? (optional)",
+        "mother_id": "String? (optional)"
+      },
+
+      {
+        "sample_id": "S010_X48-24_WGS-Rv-0155",
+        "hifi_reads": [
+          "/data/humangen_kircherlab/hassan/bioscientia/r84149R1_20241107_141501/S010_X48-24_WGS-Rv-0155.hifi_reads.bam"
+        ],
+        "affected": false,
+        "sex": "FEMALE",
+        "father_id": null,
+        "mother_id": null
+      },
+
+      {
+        "sample_id": "S011_X49-24_WGS-Rv-0156",
+        "hifi_reads": [
+          "/data/humangen_kircherlab/hassan/bioscientia/r84078_20241114_111631/S011_X49-24_WGS-Rv-0156.hifi_reads.bam"
+        ],
+        "affected": false,
+        "sex": "MALE",
+        "father_id": null,
+        "mother_id": null
+      }
+
+    ]
+  },
+  
+  "humanwgs_family.phenotypes": "String? (optional)",
+  "humanwgs_family.ref_map_file": "/data/humangen_kircherlab/hassan/wdl_latest/HiFi-human-WGS-WDL/backends/hpc/GRCh38.ref_map.v3p0p0.hpc.tsv",
+  "humanwgs_family.tertiary_map_file": "/data/humangen_kircherlab/hassan/wdl_latest/HiFi-human-WGS-WDL/backends/hpc/GRCh38.tertiary_map.v3p0p0.hpc.tsv",
+  "humanwgs_family.backend": "HPC",
+  "humanwgs_family.preemptible": true
+}
