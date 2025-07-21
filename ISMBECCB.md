@@ -113,8 +113,12 @@ Performing this MPRA in NGN2-derived neurons from WTC-11 cells showed that 16% (
 
 
 
-
-
+# 010 - Slivka is a Python Client | YOu might want web portal for a better publication
+- Web, API client
+- Dundee Resourse (collection of many websurver)
+- JalView
+- Conventional web App rather than this they already have the configuration
+- Locally installed Command Line tools.
 
 
 
