@@ -99,7 +99,10 @@ Performing this MPRA in NGN2-derived neurons from WTC-11 cells showed that 16% (
 
 # 009 - Splice Transformer - vari - Ning Shen
 - Assistant professor works closely with clinicians.
-- Saw a kid with
+- Saw a kid with some problem but with the blood sample no infomration.
+- takes seq as input and predicts splicing prob in 15 tissues.
+- Benchmarked and supoeior performance from SPlicaeAI.
+- 
 
 
 
