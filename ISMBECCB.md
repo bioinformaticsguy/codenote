@@ -97,4 +97,14 @@ Performing this MPRA in NGN2-derived neurons from WTC-11 cells showed that 16% (
 - Empowering Bioinformatics with nf-core pipelines a paper in BioRxiv.
 - Upcoming Events: nf-core Hackathron 28th - 29th October.
 
-009 - Splice Transformer
+# 009 - Splice Transformer - vari - Ning Shen
+- Assistant professor works closely with clinicians.
+- Saw a kid with
+
+
+
+
+
+
+
+
