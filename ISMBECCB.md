@@ -119,6 +119,9 @@ Performing this MPRA in NGN2-derived neurons from WTC-11 cells showed that 16% (
 - JalView
 - Conventional web App rather than this they already have the configuration
 - Locally installed Command Line tools.
+- 
 
+# 011 Keynote EASYstrata: a fully integrated workflow to infer evolutionary strata along sex chromosomes and other supergenes
+- 
 
 
