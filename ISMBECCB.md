@@ -122,6 +122,7 @@ Performing this MPRA in NGN2-derived neurons from WTC-11 cells showed that 16% (
 - 
 
 # 011 Keynote EASYstrata: a fully integrated workflow to infer evolutionary strata along sex chromosomes and other supergenes
-- 
+-
 
-
+# 012 Quantum Approximate Optimization for K-Area Clustering of Biological Data
+-
