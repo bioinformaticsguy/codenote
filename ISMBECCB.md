@@ -102,7 +102,14 @@ Performing this MPRA in NGN2-derived neurons from WTC-11 cells showed that 16% (
 - Saw a kid with some problem but with the blood sample no infomration.
 - takes seq as input and predicts splicing prob in 15 tissues.
 - Benchmarked and supoeior performance from SPlicaeAI.
-- 
+- Tissue apecificipic splice alteration compariaon with expreasion.
+- want to seprate splicing mechanisms worth expression mechanisms.
+- identified novel genes that have never been reported.
+- better understand the relationship with a network view.
+- took a chhort of 95 patients and used that sequencing data for evaluation.
+- benchmarked on pre-trained gLMs for RNA prediction.
+
+
 
 
 
