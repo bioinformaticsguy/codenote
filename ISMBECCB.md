@@ -187,6 +187,9 @@ In this talk, we will explore how such models can move us from descriptive genom
 - Models profit from ESM embeddings.
 
 
+# 004 - Proceedings Presentation: Accurate PROTAC targeted degradation prediction with DegradeMaster
+
+
 
 
 
