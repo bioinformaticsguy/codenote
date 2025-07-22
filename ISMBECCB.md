@@ -227,15 +227,34 @@ Unravelling the pangenome of autotrophic bacteria: Metabolic commonalities, evol
 
 
 
+# 009 Fair | RO-Crate: Capturing FAIR research outputs in bioinformatics and beyond
+- Packaging data with the metadata.
+- Capturing the how, what and where of your research.
+- Used by
+  - Elixir (BioDT, Galaxy)
+  - Data Plant
+  -  Biodiversity Genomics Europe (COPO)
+  -  Can be used in workflows, Data Archiving and TRE's (Nextflow, RoHub)
+
+
+# 010 PheBee | A Graph-Based System for Scalable, Traceable, and Semantically Aware Phenotyping
+- Phenotype used in cohort building
+- fits in better in the hospital infrastructure
+- A graph is made and in the middle we can see the graph by zooming out.
+- Translational Use Cases (NeoGx, CAVAlio)
 
 
 
 
-
-
-
-
-
+# 011 Disentangling the genetic and non-genetic origin of disease co-occurrences
+Numerous diseases co-occur more than expected by chance, likely due to a combination of genetic and environmental factors. However, the extent to which these influences shape disease relationships remains unclear. Here, we integrate large-scale RNA-seq data and heritability measures from human diseases with genomic data from the UK Biobank to disentangle the genetic and non-genetic origins of disease co-occurrences (DCs).
+Our findings show that gene expression not only recovers but also expands upon genomically explained DCs, capturing disease relationships beyond genetic variation. Approximately 60% of transcriptomically inferred DCs have a detectable genomic component, whereas the remaining 40% are not explained by known genomic layers, suggesting contributions from regulatory or environmental mechanisms. Consistent with this interpretation, the relative contributions of transcriptomics and genomics reconstruct disease etiology and correlate with comorbidity burden, revealing key aspects of disease mechanisms. Complex diseases with strong genetic predispositions tend to be captured by both omics, whereas those primarily influenced by non-genetic factors are better explained by transcriptomics. Additionally, we find that diseases do not generally co-occur based on their heritability, except when sharing SNPs. However, highly heritable diseases tend to have genetically driven co-occurrences, even with lowly heritable diseases. In contrast, transcriptomics explains DCs regardless of heritability, at least partly due to non-heritable mechanisms, such as regulatory or environmental. Integrating transcriptomic and genomic data provides near-complete coverage of DCs among the analyzed diseases, with a considerable portion likely rooted in factors beyond DNA sequence and, therefore, potentially modifiable.
+- Dependancey between molecular layers
+- How do disease distribute in molecular space?
+  - Most diseases are well captured by transcriptomics.
+  - Type-1 diabeties are better captured with genomics.
+  -   60% of transcriptomically infered DC's are supported by components.
+  -   Integerating transcriptomic and genomic data provides near complete picture. 
 
 
 
