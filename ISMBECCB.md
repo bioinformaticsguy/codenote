@@ -125,4 +125,52 @@ Performing this MPRA in NGN2-derived neurons from WTC-11 cells showed that 16% (
 -
 
 # 012 Quantum Approximate Optimization for K-Area Clustering of Biological Data
--
+
+
+# 22nd July 2025
+# 001 Keynote Computational biology in the age of AI agents
+- They have created different agents, PI, Immunologist and so on.
+- They can have parallel meetings and so on.
+-  PI agents read the transcripts and suggest what the next steps could be.
+-  It is a six-step process.
+-  Virtual Lab Designs nanobodies for recent COVID variants.
+-  It created a framework for designing nanobodies.
+-  Agents generate Jupyter Notebooks and reports.
+-  CellVoyager - checks data and report and generates a new report.
+-  They validated the report by orignal authors.
+-  Case Study1: COVID19 response, data exploration and visualization, CD8 T cells in COVID
+-  Case Study2: Agging in Brain: Predict biological age, agent found strong coorelation between transcriptional noise and aging.
+- Agents can help us understand AI models usually blackbox models.
+- They validated the LLM generated SAE description.
+- Limitations:
+  - Better at using exisisting tools then creating new tools. they can guide which tools to use.
+  - More breath than depth.
+  - 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
