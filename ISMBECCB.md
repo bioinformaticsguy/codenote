@@ -192,11 +192,19 @@ In this talk, we will explore how such models can move us from descriptive genom
 
 
 
+# 005 Func - Cosi = GOAnnotator: Accurate protein function annotation using automatically retrieved literature
+
+- Automated protein function prediction/annotation (AFP) is vital for understanding biological processes and advancing biomedical research. Existing text-based AFP methods including the state-of-the-art method, GORetriever, rely on expert-curated relevant literature, which is costly and time-consuming, and covers only a small portion of the proteins in UniProt. To overcome this limitation, we propose GOAnnotator, a novel framework for automated protein function annotation. It consists of two key modules: PubRetriever, a hybrid system for retrieving and re-ranking relevant literature, and GORetriever+, an enhanced module for identifying Gene Ontology (GO) terms from the retrieved texts. Extensive experiments over three benchmark datasets demonstrate that GOAnnotator delivers high-quality functional annotations, surpassing GORetriever by uncovering unique literature and predicting additional functions. These results highlight its great potential to streamline and enhance the annotation of protein functions without relying on manual curation.
+- Funn information retrival and then fine grained retrival.
+- Documents are collected and then are prioritize
+- Not all the literature is relavent to the target.
 
 
+# 006 Semi-Supervised Data-Integrated Feature Importance Enhances Performance and Interpretability of Biological Classification Tasks
 
-
-
+- Accurate model performance on training data does not ensure alignment between the model’s feature weighting patterns and human knowledge, which can limit the model’s relevance and applicability. We propose Semi-Supervised Data-Integrated Feature Importance (DIFI), a method that numerically integrates a priori knowledge, represented as a sparse knowledge map, into the model’s feature weighting. By incorporating the similarity between the knowledge map and the feature map into a loss function, DIFI causes the model’s feature weighting to correlate with the knowledge. We show that DIFI can improve the performance of neural networks using two biological tasks. In the first task, cancer type prediction from gene expression profiles was guided by identities of cancer type-specific biomarkers. In the second task, enzyme/non-enzyme classification from protein sequences was guided by the locations of the catalytic residues. In both tasks, DIFI leads to improved performance and feature weighting that is interpretable. DIFI is a novel method for injecting knowledge to achieve model alignment and interpretability.
+- Semi-supervised feature importance enhances elasification performance.
+- They want to use the embeddings from pre-trained models.
 
 
 
