@@ -173,8 +173,18 @@ In this talk, we will explore how such models can move us from descriptive genom
     - WAPL controls the cohesion  unloading.
     - The difference in WAPL and Un-Treated was based on lambda.
 - Conclusion
-  - Interpretable models will might not be able to ever outperform the blackbox models.    
+  - Interpretable models will might not be able to ever outperform the blackbox models.
+  - 
 
+  # 003 Deep learning models for unbiased sequence-based PPI prediction plateau at an accuracy of 0.65
+- Repoted accuracies of protein protein interaction preditcion (PPI) we really well.
+- Predicting the interaction from sequence alone is a hard problem.
+- So models must be able ot use some kind of shortcut.
+- They constructed gold-standard dataset. (No protein Overlap b/w training and test set)
+- They were getting 0.065 accuracy by the ESM-2 embedding.
+- There is a sweet spot in the embedding size.
+- Embedding can be helpful in prediction, could be a shortcut.
+- Models profit from ESM embeddings.
 
 
 
