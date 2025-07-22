@@ -151,15 +151,29 @@ Performing this MPRA in NGN2-derived neurons from WTC-11 cells showed that 16% (
 
 
 
+# 002 Toward Mechanistic Genomics: Advances in Sequence-to-Function Modeling
+Recent advances have firmly established sequence-to-function models as essential tools in modern genomics, enabling unprecedented insights into how genomic sequences drive molecular and cellular phenotypes. As these models have matured—with increasingly robust architectures, improved training strategies, and the emergence of standardized software frameworks—the field has rapidly evolved from proof-of-concept demonstrations to widespread practical applications across a variety of biological systems.
 
+With the core methodologies now widely adopted and infrastructure in place, the community's focus is shifting toward ambitious new frontiers. There is growing momentum around developing models that are biologically interpretable, capable of uncovering causal mechanisms of gene regulation, and generalizable to novel contexts—such as predicting the effects of perturbing a regulatory protein rather than simply altering a DNA sequence. These efforts reflect a broader aspiration: to create models that serve not just as black-box predictors, but as scientific instruments that deepen our understanding of genome function.
 
-
-
-
-
-
-
-
+In this talk, we will explore how such models can move us from descriptive genomics to mechanistic insight, highlighting recent innovations in architecture and training that support interpretability, modularity, and reusability. We will examine the contexts in which these models offer clear advantages, the limitations that remain, and practical considerations for their training. Ultimately, we will consider how advancing these models may refine the role of machine learning in biology, supporting not only accurate prediction but also the generation of more detailed and mechanistically informed hypotheses.
+- Puffin Model
+  - PromotorAl new model for promotor sequence for varient interpertation.
+  - PuffinD is the deeplearning model and puffin is not even there.
+  - Puffin is doing really bad on rare varients.
+  - no- trineucleotides effects in the puffin-notri and there was incredible improvement.
+  - Interpretable models may not out-perform blackbox models.
+- working on long range interactions.
+  -  Loop extrusion model for 3D organisation.
+  -  Created differentialable loop exclusion model dLEM.
+  -  We can fit diverse patterns and capture cell-type differences.
+  -  What controls cohesin velocity?
+    - CTCF controls it. CTCF features were made directional.
+    - they had CTCF+ and CTCF=
+    - WAPL controls the cohesion  unloading.
+    - The difference in WAPL and Un-Treated was based on lambda.
+- Conclusion
+  - Interpretable models will might not be able to ever outperform the blackbox models.    
 
 
 
