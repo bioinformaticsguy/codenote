@@ -207,5 +207,45 @@ In this talk, we will explore how such models can move us from descriptive genom
 - They want to use the embeddings from pre-trained models.
 
 
+# 007 | On the completeness, coherence, and consistency of protein function prediction: lifting function prediction from isolated proteins to biological systems
+- Types of Coherence Dependance.
+- Computational methoda do not produce biological plausible annotations.
+
+
+# 008 
+Unravelling the pangenome of autotrophic bacteria: Metabolic commonalities, evolutionary relationships, and industrially relevant traits
+- HydroCow
+- Generating milk from bacteria
+- There is global carbon emmision (moving to sustanable things)
+- Food sector contributes 26% to carbon emmision.
+- SOLEIN: already commercialized in Singapore.
+- We need to understand the metabolism of the bacteria for effectie energy transfer.
+- Generate pangenomes (Autotrophic Pangenomes)
+- They found genes in energy transfer.
+- 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
