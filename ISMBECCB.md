@@ -365,6 +365,34 @@ Beyond security concerns, adversarial attacks help uncover the inner decision-ma
 - Multi-Sample visualization and PCA
 
 
+# 010 longread pacbio
+- can we process 100M reqds in a few hours
+- develope a scalable caller 
+- how much a very high through put pacbio cost
+
+# 011 Quantifying rna expressions and modifications using long reqd RNA-seq
+- Jonathan Görke - m6anet
+- talked a lot about singapore
+- pandemic ended because of mRNA vaccines
+- talked about introducing RNA
+- strong inflamatory response but protein was nit produced
+- they replaced unmodified bases with modified bases 
+- we can also use un-natural modifications
+- m6a modification have an impact
+- direct RNA sequencing
+- we can also get signals for modifications 
+- identifying the modifications is largely a computational task
+- some of those rna are modified
+- dorado used for ont basecaller
+- can we train modification models for other models?
+- framework is generalizable
+- these models are trained on data that is very limited 
+- kmers having more then one modifications model does not have seen 
+- so it causes the problems 
+- we can see typical emrichment on 3prime end 
+- there could be a large number of false positives
+
+
 
 
 
