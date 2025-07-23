@@ -304,4 +304,40 @@ This combined framework represents an advancement in in-silico 3D chromatin mode
 - Copahegan university said you are only allowed to use copilot.
 
 005 Identification and characterization of chromatin-associated long non-coding RNAs in human
+- Chromatin-associated long non-coding RNAs (ca-lncRNAs) play crucial regulatory roles within the nucleus by preferentially binding to chromatin. Despite their importance, systematic identification and functional studies of ca-lncRNAs have been limited. Here, we identified and characterized human ca-lncRNAs genome-wide, utilizing 323,950 lncRNAs from LncBook 2.0 and integrating high-throughput sequencing datasets that assess RNA-chromatin association. We identified 14,138 high-confidence ca-lncRNAs enriched on chromatin across six cell lines, comprising nearly 80% of analyzed chromatin-associated RNAs, highlighting their significant role in chromatin localization. To explore the sequence basis for chromatin localization, we applied the LightGBM machine learning model to identify contributing nucleotide k-mers and derived 12 sequence elements through k-mer assembly and feature ablation. These sequence elements are frequently found within Alu repeats, with more Alu repeats enhancing chromatin localization. Meta-profiling of chromatin-binding sequencing segments further demonstrated that ca-lncRNAs bind to chromatin through Alu repeats. To delve deeper into the molecular mechanisms underlying the binding, we conducted integrative interactome analysis and computational prediction, revealing that Alu repeats primarily tether to chromatin through dsDNA-RNA triplex formation. Finally, to address sample constraints in ca-lncRNA identification, we developed a machine learning model based on sequential feature selection for large-scale prediction. This approach yielded 201,959 predicted ca-lncRNAs, approximately 70% of which are predicted to be preferentially located in the nucleus. Collectively, these high-throughput-identified and machine-learning-predicted ca-lncRNAs together form a robust resource for further functional studies.
+- Ln Rna longer than 200 neucleotides
+- lnRNA play crutial role in the nucleus,
+- 60% lncRNA are in chromatin
+- RNA chromatin interaction sequencing data.
+- are of the CLE's are located in Alu
+- 50 lncRNA contain Ali element.
+- more than 30% lncRNAs contain multiple Alu.
+- Alu is Direct Chromatin Binding Region in Ca-lncRNA.
+- Alu boundries exibit higher chromatin binding density.
+- in NEAT1 there are three peaks in the chromatin binding.
+- There are 4 hypothesis for this but they do not know which one is the major mechanism
+- Alu regions exibit higher propancity to form triplex structures.
 - 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
