@@ -258,6 +258,15 @@ Our findings show that gene expression not only recovers but also expands upon g
 
 
 
+# 23 July 2925
+# Keynote Charlotte Deane @ 9am
+- Paragraph Tool
+  - you give seq of antibody.
+  - probability of each residue to bind to the target.
+- AbLang
+  - A language model for antibodies
+
+
 
 
 
