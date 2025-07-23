@@ -289,7 +289,19 @@ This combined framework represents an advancement in in-silico 3D chromatin mode
 
 
 
+004 The practical use of AI in cores
+- three groups ChatGPT, mets code LLM, just search engine (use carefully)
+- Sequera
+  -  is company behind nextflow, squera could be free for academic program.
+  - SqueraAI for bioinformatic LLM for nextflow. (could also be integerated into VS code)
+  - MULTIQC (Unified reporting across platform runs) and AI chat.
+- Madeline Gogol: 
+  - Benchmarking is a problem there.
+  - Finetuning to do particular tasks.
+- Training course
+  - Training internally and externally.
+  - Enabeling not replacing people.
+- Copahegan university said you are only allowed to use copilot.
 
-
-
-
+005 Identification and characterization of chromatin-associated long non-coding RNAs in human
+- 
