@@ -317,15 +317,52 @@ This combined framework represents an advancement in in-silico 3D chromatin mode
 - in NEAT1 there are three peaks in the chromatin binding.
 - There are 4 hypothesis for this but they do not know which one is the major mechanism
 - Alu regions exibit higher propancity to form triplex structures.
+
+
+
+006 - Benchmarking Variant-Calling Workflows: The nf-core/variantbenchmarking Pipeline within the GHGA Framework
+- nf-core/varientbenchmarking pipeline in GHGA
+- GHGA is not just an archive
+- THis big database is gonna have alnalysis.
+- At the end of benchmarking they will share the reslts.
+- comparing the snv is easy.
+- Structural varints it is defficult as the representations vary a lot.
+- Varient representation and normalization is different.
+- Genomic complexity.
+- No standardization.
+- No best practice to do SV bench marking.
+- Pipeline used GS test set GIAB.
+- Liftover is needed when it is aligned to a different reference.
+- Reformating and standardizing the SV representsation.
+- Varien filtering depends on the length.
 - 
 
 
+007 - SpliSync: Genomic language model-driven splice site correction of long RNA reads | Liliana Florea - HiTSeq: High Through
+
+- We developed SpliSync, a deep learning method for accurate splice site correction in long read alignments. It combines a genomic language model, HyenaDNA, and a 1D U-net segmentation head, integrating genome sequence and alignment embeddings. SpliSync improves the detection of splice sites and introns and, when integrated with a short read transcript assembler, allows for improved transcript reconstruction, matching or outperforming reference methods like IsoQuant and FLAIR. The method shows promise for transcriptomic applications, especially in species with incomplete gene annotations or for discovering novel transcript variations.
+
+- performed evaluation on simulated data as well as real data (Human WTC11).
+- she think that she has showen that it is more accurate then the previous methods.
 
 
 
+# 008 adverSCarial: a toolkit for exposing classifier vulnerabilities in single-cell transcriptomics
+- Adversarial attacks pose a significant risk to machine learning (ML) tools designed for classifying single-cell RNA-sequencing (scRNA-seq) data, with potential implications for biomedical research and future clinical applications. We present adverSCarial, a novel R package that evaluates the vulnerability of scRNA-seq classifiers to various adversarial perturbations, ranging from barely detectable, subtle changes in gene expression to large-scale modifications. We demonstrate how five representative classifiers spanning marker-based, hierarchical, support vector machine, random forest, and neural network algorithms, respond to these attacks on four hallmarks scRNA-seq datasets. Our findings reveal that all classifiers eventually fail under different amplitudes of perturbations, which depend on the ML algorithm they are based on and on the nature of the modifications.
+Beyond security concerns, adversarial attacks help uncover the inner decision-making mechanisms of the classifiers. The various attack modes and customizable parameters proposed in adverSCarial are useful to identify which gene or set of genes is crucial for correct classification and to highlight the genes that can be substantially altered without detection. These functionalities are critical for the development of more robust and interpretable models, a step toward integrating scRNA-seq classifiers into routine research and clinical workflows. The R package is freely available on Bioconductor (10.18129/B9.bioc.adverSCarial) and helps evaluate scRNA-seq-based ML models vulnerabilities in a computationally-cheap and time-efficient framework.
 
+- Single Gene (4/5 classifiers vernerable)
+- Max-Change Method.
+- CGD Method.
+- When we put very abarent values for the modification.
 
-
+  
+# 009 Quality assessment of long read data in multisample lrRNA-seq experiments using SQANTI-reads
+- Groups reads into unique junction chains.
+  - 
+- Identified putatuve unabbotated transcripts.
+- Quantifies variations around annotated junctions.
+- Multi-Sample visualization and PCA
 
 
 
