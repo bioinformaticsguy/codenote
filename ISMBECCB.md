@@ -419,9 +419,41 @@ Beyond security concerns, adversarial attacks help uncover the inner decision-ma
 - for shortneed we need phased VCF to work.
 
 
+# HitSeq | Exploiting uniqueness: seed-chain-extend alignment on elastic founder graphs
+- they simply construction by representing aligned sequences.
+- N50 matric is used to check the composition of the dna/chromosome
+- Only require few basic operations on the text.
+- benefits of chaining is that
+- They do not handle large MSA graphs.
+- Didn't looked at meaning full biology.
+
+# HitSeq | FroM Superstring to Indexing: a space-efficient index for unconstrained k-mer sets using the Masked Burrows-Wheeler Transform (MBWT)
+- we want dictionary queries
+- They use de Brujin graphs. 
 
 
+# HitSeq | The Alice assembler: dramatically accelerating genome assembly with MSR sketching | Roland Faure
+- Meta Genome assembly | Assembling gut Metagenome (HiFi 250Gb)
+- metaMDGB is extremly fast, 19h 10G RAM
+- It used minimizers, is a nice trick.
+- It is fast but varients are lost.
+- Mapping friendly sequencing reductions.
+- rather than assembling the orignal reads you assemble the sketch
+- Alice assembler is becoming kind of stable now.
+- 5h and 10gb of RAM.
+- DARK side: it also amplifies the sequencing erros too.
+- Questions: Did you test ths on short read data and how does that come out? It works well with long reads.
+  - Q: How do you choose the hash function? as there are different kinds of moss in MSR did you try different hash functions to get the best one? used cahotic hash function NT-hash.
+  - large genomes can also be compressed using sketching.
+    
 
+# HitSeq | BINSEQ: A Family of High-Performance Binary Formats for Nucleotide Sequences
 
-
+- Sequencing data is getting bigger very fast.
+- FASTQ; is probalamatic with paralization
+- Records has to be parsed sequently
+- How to improve FASTQ?
+  - family of binary format BQ and VBQ.
+  - BQ: Simple format, does not have quality info
+  - VBQ: Optional quality info, varient record possible   
 
