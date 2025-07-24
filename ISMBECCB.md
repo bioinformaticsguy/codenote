@@ -457,3 +457,52 @@ Beyond security concerns, adversarial attacks help uncover the inner decision-ma
   - BQ: Simple format, does not have quality info
   - VBQ: Optional quality info, varient record possible   
 
+
+
+# HitSeq | Minimizers | GreedyMini: Generating low-density DNA minimizers | Arseny Shur, Bar Ilan University, Israel
+
+
+# HitSeq | LYCEUM: Learning to call copy number variants on low coverage ancient genomes
+- Ancient Genome analysis is limited to SNV's
+- Why Chellanging
+  - High COntamination
+  - Chemical env Demage
+  - Low Coverae
+  - ECOLE: Learnign to call the copy number variatios.
+  - Train model on mdern data and then fine-tune it to the ancient dna conditions.
+- They masked the positons and trained the model to get back those things to get better copy number calls.
+
+
+# RegSys | Predicting gene expression using millions of yeast promoters reveals cis-regulatory logic
+
+- Randomn Promotor Dream Chellange.
+- We have promotor sequences and expression values.
+- More improvement on the challenging sequences and low on SNV.
+- Why we should care about this?
+  -  Complex cis-regulatory logic can be discused.
+https://academic.oup.com/bioinformaticsadvances/article/5/1/vbaf130/8155182
+
+
+# RegSys | Learning the Regulatory Genome by Destruction and Creation
+- Crisper_SURF
+- Crisper-Clear
+  - Trying to extablish genotype to phenotype relationship.
+  - Established framework to increase resolution of CRISPR tiling screen.
+  - Clear Screen:
+    - You need to decide the editor. (base Editing C-T and A-G)
+    - Region
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
