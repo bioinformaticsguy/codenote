@@ -394,6 +394,20 @@ Beyond security concerns, adversarial attacks help uncover the inner decision-ma
 
 
 
+# 25th July 2025
+# Nano Pore HitSeq | Resolving Paralogues and Multi-Copy Genes with Nanopore Long-Read Sequencing | Sergey Nurk
+- Used CTC-Idea: you have a path and you ask what is used in the base caller.
+- Dupelx Sequencing: enables Q30 accuracy.
+- Repeated measurements reduce the errors.
+- Stereo Duplex:
+  - previous approah pair decoding, 2021 is relatively ancient technique.
+  - decode through both but it is computationaly expansive 700mb per second.
+  - Used Heuristic algorithm, fast and transparent high speed.
+  - Streo is best of both worlds
+  - basecaller needs to be robust.
+- ModCaller training that DNA can be modified.
+-  
+
 
 
 
