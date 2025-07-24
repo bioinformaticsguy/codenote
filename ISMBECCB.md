@@ -406,12 +406,17 @@ Beyond security concerns, adversarial attacks help uncover the inner decision-ma
   - Streo is best of both worlds
   - basecaller needs to be robust.
 - ModCaller training that DNA can be modified.
--  
 
 
-
-
-
+# GenCompBio | Haplotype-specific copy number profiling of cancer genomes from long reads sequencing data
+- Savana, Purpe for coppy number profiling.
+- WaKhan, haplotype specific copy number caller.
+- It generated BED files, VCF files as well as interactive plots.
+- No benchmark Truth set avalible for copy numbers.
+- All allele specific tools will strugle because they will assign.
+- Already integerated in PacBio Workflow.
+- can you tell if most of the improvement came by using long read data, he thinks it is because of phase correction.
+- for shortneed we need phased VCF to work.
 
 
 
