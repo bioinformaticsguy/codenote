@@ -1182,3 +1182,134 @@ also I have noticed that the folder directory is quite messed up because of seve
   - Not yet 
 - Check check gnomad file for chromosome 11.
 - check the file for chromosome M. 
+
+# 22 July 2025
+```python
+[-        ] NFCORE_RAREDISEASE:RAREDISEASE:PREPARE_REFERENCES:TABIX_PBT                                                -
+[-        ] NFCORE_RAREDISEASE:RAREDISEASE:PREPARE_REFERENCES:TABIX_VCFANNOEXTRA                                       -
+[-        ] NFCORE_RAREDISEASE:RAREDISEASE:PREPARE_REFERENCES:TABIX_BGZIPINDEX_VCFANNOEXTRA                            -
+[-        ] NFCORE_RAREDISEASE:RAREDISEASE:PREPARE_REFERENCES:BEDTOOLS_PAD_TARGET_BED                                  -
+[-        ] NFCORE_RAREDISEASE:RAREDISEASE:PREPARE_REFERENCES:TABIX_BGZIPINDEX_PADDED_BED                              -
+[-        ] NFCORE_RAREDISEASE:RAREDISEASE:PREPARE_REFERENCES:GATK_BILT                                                -                                    [-        ] NFCORE_RAREDISEASE:RAREDISEASE:PREPARE_REFERENCES:GATK_ILT                                                 -
+[-        ] NFCORE_RAREDISEASE:RAREDISEASE:PREPARE_REFERENCES:CAT_CAT_BAIT                                             -
+[1d/25e033] NFCORE_RAREDISEASE:RAREDISEASE:PREPARE_REFERENCES:UNTAR_VEP_CACHE (homo_sapiens_vep_114_GRCh38.tar.gz)     [100%] 1 of 1 ✔
+[-        ] NFCORE_RAREDISEASE:RAREDISEASE:PREPARE_REFERENCES:RTGTOOLS_FORMAT                                          -
+[69/cbff78] NFCORE_RAREDISEASE:RAREDISEASE:CREATE_PEDIGREE_FILE (pedigree)                                             [100%] 1 of 1 ✔
+[de/5053e7] NFCORE_RAREDISEASE:RAREDISEASE:CREATE_HGNCIDS_FILE (standard)                                              [100%] 1 of 1 ✔
+[-        ] NFCORE_RAREDISEASE:RAREDISEASE:SPRING_DECOMPRESS_TO_FQ_PAIR                                                -
+[-        ] NFCORE_RAREDISEASE:RAREDISEASE:SPRING_DECOMPRESS_TO_R1_FQ                                                  -
+[-        ] NFCORE_RAREDISEASE:RAREDISEASE:SPRING_DECOMPRESS_TO_R2_FQ                                                  -                                    [d1/e6cdf7] NFCORE_RAREDISEASE:RAREDISEASE:FASTQC (dna_01_LNUMBER1)                                                    [100%] 1 of 1 ✔
+[de/68645f] NFCORE_RAREDISEASE:RAREDISEASE:ALIGN:ALIGN_BWA_BWAMEM2_BWAMEME:BWAMEM2_MEM (dna_01_LNUMBER1)               [100%] 1 of 1, failed: 1 ✘
+[-        ] NFCORE_RAREDISEASE:RAREDISEASE:ALIGN:ALIGN_BWA_BWAMEM2_BWAMEME:SAMTOOLS_INDEX_ALIGN                        -                                    [-        ] NFCORE_RAREDISEASE:RAREDISEASE:ALIGN:ALIGN_BWA_BWAMEM2_BWAMEME:SAMTOOLS_STATS                              -
+[-        ] NFCORE_RAREDISEASE:RAREDISEASE:ALIGN:ALIGN_BWA_BWAMEM2_BWAMEME:SAMTOOLS_MERGE                              -
+[-        ] NFCORE_RAREDISEASE:RAREDISEASE:ALIGN:ALIGN_BWA_BWAMEM2_BWAMEME:MARKDUPLICATES                              -
+[-        ] NFCORE_RAREDISEASE:RAREDISEASE:ALIGN:ALIGN_BWA_BWAMEM2_BWAMEME:SAMTOOLS_INDEX_MARKDUP                      -
+[c9/c32543] NFCORE_RAREDISEASE:RAREDISEASE:CALL_SNV:CALL_SNV_DEEPVARIANT:ADD_VARCALLER_TO_BED (deepvariant)            [100%] 1 of 1 ✔
+[ba/588dd8] NFCORE_RAREDISEASE:RAREDISEASE:CALL_SNV:POSTPROCESS_MT_CALLS:ADD_VARCALLER_TO_BED (mutect2)                [100%] 1 of 1 ✔
+[-        ] NFCORE_RAREDISEASE:RAREDISEASE:MULTIQC                                                                     [  0%] 0 of 1
+Plus 113 more processes waiting for tasks…
+Execution cancelled -- Finishing pending tasks before exit
+WARN: Input tuple does not match tuple declaration in process `NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_CNVNATOR:SVDB_MERGE_CNVNATOR` -- offending value: [father:, mother:, probands:[dna_01], upd_children:[], id:dnafirst]
+WARN: Input tuple does not match tuple declaration in process `NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_TIDDIT:SVDB_MERGE_TIDDIT` -- offending value: [father:, mother:, probands:[dna_01], upd_children:[], id:dnafirst]
+WARN: Got an interrupted exception while taking agent result | java.lang.InterruptedException
+ERROR ~ Error executing process > 'NFCORE_RAREDISEASE:RAREDISEASE:ALIGN:ALIGN_BWA_BWAMEM2_BWAMEME:BWAMEM2_MEM (dna_01_LNUMBER1)'
+
+Caused by:
+  Process `NFCORE_RAREDISEASE:RAREDISEASE:ALIGN:ALIGN_BWA_BWAMEM2_BWAMEME:BWAMEM2_MEM (dna_01_LNUMBER1)` terminated for an unknown reason -- Likely it has been terminated by the external system
+
+
+Command executed:
+
+  INDEX=`find -L ./ -name "*.amb" | sed 's/\.amb$//'`
+
+  bwa-mem2 \
+      mem \
+      -M -K 100000000 -R '@RG\tID:A4842_DNA_01_S1_L001_R1_001_1\tPL:ILLUMINA\tSM:dna_01' \
+      -t 12 \
+      $INDEX \
+      A4842_DNA_01_S1_L001_R1_001.fastq.gz A4842_DNA_01_S1_L001_R2_001.fastq.gz \
+      | samtools sort -T ./samtools_sort_tmp -@ 12  -o dna_01_LNUMBER1_sorted.bam -
+
+  cat <<-END_VERSIONS > versions.yml
+  "NFCORE_RAREDISEASE:RAREDISEASE:ALIGN:ALIGN_BWA_BWAMEM2_BWAMEME:BWAMEM2_MEM":
+      bwamem2: $(echo $(bwa-mem2 version 2>&1) | sed 's/.* //')
+      samtools: $(echo $(samtools --version 2>&1) | sed 's/^.*samtools //; s/Using.*$//')
+  END_VERSIONS
+
+Command exit status:
+  -
+
+Command output:
+  (empty)
+
+Command wrapper:
+  [0000][PE] (25, 50, 75) percentile: (431, 527, 650)
+  [0000][PE] low and high boundaries for computing mean and std.dev: (1, 1088)
+  [0000][PE] mean and std.dev: (547.10, 171.28)
+  [0000][PE] low and high boundaries for proper pairs: (1, 1307)
+  [0000][PE] analyzing insert size distribution for orientation RF...
+  [0000][PE] (25, 50, 75) percentile: (36, 71, 158)
+  [0000][PE] low and high boundaries for computing mean and std.dev: (1, 402)
+  [0000][PE] mean and std.dev: (75.29, 59.99)
+  [0000][PE] low and high boundaries for proper pairs: (1, 524)
+  [0000][PE] analyzing insert size distribution for orientation RR...
+  [0000][PE] (25, 50, 75) percentile: (224, 225, 582)
+  [0000][PE] low and high boundaries for computing mean and std.dev: (1, 1298)
+  [0000][PE] mean and std.dev: (336.91, 244.03)
+  [0000][PE] low and high boundaries for proper pairs: (1, 1656)
+  [0000][PE] skip orientation FF
+  [0000][PE] skip orientation RF
+  [0000][PE] skip orientation RR
+  [0000] 3. Calling kt_for - worker_sam
+        [0000][ M::mem_process_seqs] Processed 662252 reads in 318.750 CPU sec, 26.961 real sec
+  [0000] Calling mem_process_seqs.., task: 299
+  [0000] 1. Calling kt_for - worker_bwt
+  [0000] read_chunk: 100000000, work_chunk_size: 100000052, nseq: 662252
+        [0000][ M::kt_pipeline] read 662252 sequences (100000052 bp)...
+  [0000] 2. Calling kt_for - worker_aln
+  [0000] Inferring insert size distribution of PE reads from data, l_pac: 3099922541, n: 662252
+  [0000][PE] # candidate unique pairs for (FF, FR, RF, RR): (5, 278060, 78, 11)
+  [0000][PE] skip orientation FF as there are not enough pairs
+  [0000][PE] analyzing insert size distribution for orientation FR...
+  [0000][PE] (25, 50, 75) percentile: (431, 528, 652)
+  [0000][PE] low and high boundaries for computing mean and std.dev: (1, 1094)
+  [0000][PE] mean and std.dev: (548.17, 171.98)
+  [0000][PE] low and high boundaries for proper pairs: (1, 1315)
+  [0000][PE] analyzing insert size distribution for orientation RF...
+  [0000][PE] (25, 50, 75) percentile: (27, 54, 114)
+  [0000][PE] low and high boundaries for computing mean and std.dev: (1, 288)
+  [0000][PE] mean and std.dev: (63.19, 49.88)
+  [0000][PE] low and high boundaries for proper pairs: (1, 375)
+  [0000][PE] analyzing insert size distribution for orientation RR...
+  [0000][PE] (25, 50, 75) percentile: (160, 192, 295)
+  [0000][PE] low and high boundaries for computing mean and std.dev: (1, 565)
+  [0000][PE] mean and std.dev: (193.60, 116.35)
+  [0000][PE] low and high boundaries for proper pairs: (1, 700)
+  [0000][PE] skip orientation RF
+  [0000][PE] skip orientation RR
+  [0000] 3. Calling kt_for - worker_sam
+        [0000][ M::mem_process_seqs] Processed 662252 reads in 316.550 CPU sec, 26.842 real sec
+  [0000] Calling mem_process_seqs.., task: 300
+  [0000] 1. Calling kt_for - worker_bwt
+  [0000] read_chunk: 100000000, work_chunk_size: 100000052, nseq: 662252
+        [0000][ M::kt_pipeline] read 662252 sequences (100000052 bp)...
+
+Work dir:
+  /data/cephfs-1/work/groups/kircher/users/alhassa_m/run_nf/rare/workdir/de/68645f86cdbb375b377c03a890a2c8
+
+Container:
+  /data/cephfs-1/home/users/alhassa_m/scratch/data_out_nf/singlecash/depot.galaxyproject.org-singularity-mulled-v2-e5d375990341c5aef3c9aff74f96f66f65375ef6-2d15960ccea84e249a150b7f5d4db3a42fc2d6c3-0.img
+
+Tip: you can replicate the issue by changing to the process work dir and entering the command `bash .command.run`
+
+ -- Check '.nextflow.log' file for details
+ERROR ~ Pipeline failed. Please refer to troubleshooting docs: https://nf-co.re/docs/usage/troubleshooting
+
+ -- Check '.nextflow.log' file for details
+ERROR ~ class java.util.ArrayList cannot be cast to class java.util.Map$Entry (java.util.ArrayList and java.util.Map$Entry are in module java.base of loader 'bootstrap')
+
+ -- Check script '/data/cephfs-1/home/users/alhassa_m/.nextflow/assets/nf-core/raredisease/./workflows/../subworkflows/local/./call_sv_manta/main.nf' at line: 34 or see '.nextflow.log' file for more details
+ERROR ~ Pipeline failed. Please refer to troubleshooting docs: https://nf-co.re/docs/usage/troubleshooting
+
+ -- Check '.nextflow.log' file for details
+```
