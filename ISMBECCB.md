@@ -1,8 +1,9 @@
-001 - Vari-Cozi - Alexande Sassi @ 11:20
+# 21st July 2025
+001 - Vari-Cozi - Alexander Sasse @ 11:20
 - most varient lie in non-coding region
 - You can do Machenis Insights and Varient effect prediction
 - Problems are with models: (Emformer - S2F understand promotor but not enhancer)
-- Constraining teaining on varient simproves prediction of differences.
+- Constraining training on varients improves the prediction of differences.
 - Deep-Allele improves for allelic ratios. 
 - SAGE-net trains on personal genomes. ( P-SAGE cannot improve predictions for unseen genes)
 - Training on sequence varinet is promissing.
@@ -11,10 +12,10 @@
 002 - Combining massively parallel reporter assays and graph genomics to assay the regulatory effects of indels and structural variants
 - SuRE ()
 - They used the Graph Genome. 
-- SuRE-SV pipeline in nextflow.
+- SuRE-SV pipeline in Nextflow.
 - 
 
-003 - Multilingual model improves zero-shot prediction of disease effects on proteins @ 11:2 1
+003 - Multilingual model improves zero-shot prediction of disease effects on proteins @ 11:21
 Models for mutation effect prediction in coding sequences rely on sequence-, structure-, or homology-based features. Here, we introduce a novel method that combines a codon language model with a protein language model, providing a dual representation for evaluating effects of mutations on disease. By capturing contextual dependencies at both the genetic and protein level, our approach achieves a 3% increase in ROC-AUC classifying disease effects for 137,350 ClinVar missense variants across 13,791 genes, outperforming two single-sequence-based language models. Obviously the codon language model can uniquely differentiate synonymous from nonsense mutations at the genomic level. Our strategy uses information at complementary biological scales (akin to human multilingual models) to enable protein fitness landscape modeling and evolutionary studies, with potential applications in precision medicine, protein engineering, and genomics.
 - Boden Lab
 - USED SNV from ClinVar
@@ -53,7 +54,7 @@ Here, we present the novel random forest-based prediction method StructGuy that 
 - Split proteins from ProteinGYM so that we removed (Smae, clse, Distant and unrelated)
 
 
-005 - Functional characterization of standing variation around disease-associated genes using Massively Parallel Reporter Assays - Killian
+005 - Functional characterisation of standing variation around disease-associated genes using Massively Parallel Reporter Assays - Killian
 A substantial reservoir of disease-associated variants resides in non-coding sequences, particularly in proximal and distal gene regulatory sequences. As part of the NIH Impact of Genomic Variation on Function (IGVF) consortium, we investigated functional genetic variation using Massively Parallel Reporter Assays (MPRAs). We tested >28,000 candidate cis-regulatory regions (cCREs) in the proximity (50kb) of 526 neural, cardiac or clinically actionable genes as well as a random gene set. Within these cCREs, we included >46,000 variants from gnomAD. This included all single nucleotide variants (SNVs) with allele frequency (AF) ≥1% as well as 35,000 rare and singleton variants. Rare variants were prioritized using Enformer (Avsec Ž et al. 2021) to select 70% potentially activating, 15% repressing, and 15% random variants.
 Performing this MPRA in NGN2-derived neurons from WTC-11 cells showed that 16% (4045) of cCREs have significantly different activity from negative controls, while 6% (1540) of elements exhibit distinct activity from scrambled controls (dCREs). Among the dCREs, 3.3% are significantly more active and 2.7% were less active. About 3% (1304) of the tested variants showed a significant allelic effect. We observed both common and rare variants with significant allelic effects, with rare variants contributing the larger proportion. Examples of significant common and singleton SNVs include rs11635753 and rs1257445811 affecting SMAD3 and TRIO, respectively, and both associated with complex neurological phenotypes. Using Enformer for prioritization resulted in an enrichment in the selected rare variants but also failed to effectively capture regulatory grammar at base resolution.
 - Looked for diseases with cardiac and neuro.
@@ -67,7 +68,7 @@ Performing this MPRA in NGN2-derived neurons from WTC-11 cells showed that 16% (
 - Investigating PGx Varients in 1000,000 genomes Projects, NUDT15 protein.
 - Varient Page has 6.5M Rare and Common Varients.
 - Chellanges that might be addresable by AI?
-- Project, Developement of Digital Twons for Rare Disease.
+- Project, Development of Digital Twons for Rare Disease.
 - Perturbation Catelogue. 
 
 007 - Genetic Cofounding Hadasa 
@@ -110,10 +111,7 @@ Performing this MPRA in NGN2-derived neurons from WTC-11 cells showed that 16% (
 - benchmarked on pre-trained gLMs for RNA prediction.
 
 
-
-
-
-# 010 - Slivka is a Python Client | YOu might want web portal for a better publication
+# 010 - Slivka is a Python Client | You might want web portal for a better publication
 - Web, API client
 - Dundee Resourse (collection of many websurver)
 - JalView
@@ -136,8 +134,8 @@ Performing this MPRA in NGN2-derived neurons from WTC-11 cells showed that 16% (
 -  Virtual Lab Designs nanobodies for recent COVID variants.
 -  It created a framework for designing nanobodies.
 -  Agents generate Jupyter Notebooks and reports.
--  CellVoyager - checks data and report and generates a new report.
--  They validated the report by orignal authors.
+-  CellVoyager - checks data and reports and generates a new report.
+-  They validated the report by the original authors.
 -  Case Study1: COVID19 response, data exploration and visualization, CD8 T cells in COVID
 -  Case Study2: Agging in Brain: Predict biological age, agent found strong coorelation between transcriptional noise and aging.
 - Agents can help us understand AI models usually blackbox models.
@@ -146,9 +144,6 @@ Performing this MPRA in NGN2-derived neurons from WTC-11 cells showed that 16% (
   - Better at using exisisting tools then creating new tools. they can guide which tools to use.
   - More breath than depth.
   - 
-
-
-
 
 
 # 002 Toward Mechanistic Genomics: Advances in Sequence-to-Function Modeling
@@ -177,13 +172,13 @@ In this talk, we will explore how such models can move us from descriptive genom
   - 
 
   # 003 Deep learning models for unbiased sequence-based PPI prediction plateau at an accuracy of 0.65
-- Repoted accuracies of protein protein interaction preditcion (PPI) we really well.
+- Repoted accuracies of protein-protein interaction preditcion (PPI) we really well.
 - Predicting the interaction from sequence alone is a hard problem.
 - So models must be able ot use some kind of shortcut.
 - They constructed gold-standard dataset. (No protein Overlap b/w training and test set)
 - They were getting 0.065 accuracy by the ESM-2 embedding.
 - There is a sweet spot in the embedding size.
-- Embedding can be helpful in prediction, could be a shortcut.
+- Embedding can be helpful in prediction, and could be a shortcut.
 - Models profit from ESM embeddings.
 
 
@@ -303,8 +298,8 @@ This combined framework represents an advancement in in-silico 3D chromatin mode
   - Enabeling not replacing people.
 - Copahegan university said you are only allowed to use copilot.
 
-005 Identification and characterization of chromatin-associated long non-coding RNAs in human
-- Chromatin-associated long non-coding RNAs (ca-lncRNAs) play crucial regulatory roles within the nucleus by preferentially binding to chromatin. Despite their importance, systematic identification and functional studies of ca-lncRNAs have been limited. Here, we identified and characterized human ca-lncRNAs genome-wide, utilizing 323,950 lncRNAs from LncBook 2.0 and integrating high-throughput sequencing datasets that assess RNA-chromatin association. We identified 14,138 high-confidence ca-lncRNAs enriched on chromatin across six cell lines, comprising nearly 80% of analyzed chromatin-associated RNAs, highlighting their significant role in chromatin localization. To explore the sequence basis for chromatin localization, we applied the LightGBM machine learning model to identify contributing nucleotide k-mers and derived 12 sequence elements through k-mer assembly and feature ablation. These sequence elements are frequently found within Alu repeats, with more Alu repeats enhancing chromatin localization. Meta-profiling of chromatin-binding sequencing segments further demonstrated that ca-lncRNAs bind to chromatin through Alu repeats. To delve deeper into the molecular mechanisms underlying the binding, we conducted integrative interactome analysis and computational prediction, revealing that Alu repeats primarily tether to chromatin through dsDNA-RNA triplex formation. Finally, to address sample constraints in ca-lncRNA identification, we developed a machine learning model based on sequential feature selection for large-scale prediction. This approach yielded 201,959 predicted ca-lncRNAs, approximately 70% of which are predicted to be preferentially located in the nucleus. Collectively, these high-throughput-identified and machine-learning-predicted ca-lncRNAs together form a robust resource for further functional studies.
+005 Identification and characterisation of chromatin-associated long non-coding RNAs in human
+- Chromatin-associated long non-coding RNAs (ca-lncRNAs) play crucial regulatory roles within the nucleus by preferentially binding to chromatin. Despite their importance, systematic identification and functional studies of ca-lncRNAs have been limited. Here, we identified and characterized human ca-lncRNAs genome-wide, utilising 323,950 lncRNAs from LncBook 2.0 and integrating high-throughput sequencing datasets that assess RNA-chromatin association. We identified 14,138 high-confidence ca-lncRNAs enriched on chromatin across six cell lines, comprising nearly 80% of analyzed chromatin-associated RNAs, highlighting their significant role in chromatin localisation. To explore the sequence basis for chromatin localisation, we applied the LightGBM machine learning model to identify contributing nucleotide k-mers and derived 12 sequence elements through k-mer assembly and feature ablation. These sequence elements are frequently found within Alu repeats, with more Alu repeats enhancing chromatin localisation. Meta-profiling of chromatin-binding sequencing segments further demonstrated that ca-lncRNAs bind to chromatin through Alu repeats. To delve deeper into the molecular mechanisms underlying the binding, we conducted integrative interactome analysis and computational prediction, revealing that Alu repeats primarily tether to chromatin through dsDNA-RNA triplex formation. Finally, to address sample constraints in ca-lncRNA identification, we developed a machine learning model based on sequential feature selection for large-scale prediction. This approach yielded 201,959 predicted ca-lncRNAs, approximately 70% of which are predicted to be preferentially located in the nucleus. Collectively, these high-throughput-identified and machine-learning-predicted ca-lncRNAs together form a robust resource for further functional studies.
 - Ln Rna longer than 200 neucleotides
 - lnRNA play crutial role in the nucleus,
 - 60% lncRNA are in chromatin
