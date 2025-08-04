@@ -1313,3 +1313,16 @@ ERROR ~ Pipeline failed. Please refer to troubleshooting docs: https://nf-co.re/
 
  -- Check '.nextflow.log' file for details
 ```
+
+# 28th July 2025
+- Try soft links and keep uprk folde in scratch.
+
+The pipline works fine on the short sub data with the following configurations. [git release](https://github.com/bioinformaticsguy/rare-disease-pipeline/tree/v1.0.1-beta)
+
+and the following command was used to run the pipeline:
+
+```bash
+nextflow run nf-core/raredisease -revision 2.6.0 -c custom.config -params-file sub_params.yaml -profile singularity
+```
+
+# 29th July 2025 (Runing with custom config on OMICS)

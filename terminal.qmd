@@ -79,3 +79,8 @@ cmp -s lab_c_md5.txt my_c_md5.txt && echo "✅ All lines match!" || echo "❌ Di
 ✅ All lines match!
 ```
 
+
+# To check current running things in OMICS
+
+```bash
+squeue -u hassan -o "%.18i %.9P %.20j %.8u %.2t %.10M %.10L %.6D %.6C %.10m %R"```

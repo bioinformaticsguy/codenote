@@ -17,6 +17,7 @@ website:
         contents:
         - href: long.qmd
         - href: short.qmd
+        - href: short_omics.qmd
      
       - section: "Commands"
         contents:

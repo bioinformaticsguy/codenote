@@ -249,3 +249,25 @@ srun: job 1487609 queued and waiting for resources
 ```
 
 We tried this much and the cluster is moody at this point.
+
+# 29th July 2025
+I got the following resooursces.
+```bash
+srun --partition=shortterm --mem=256G -c 4 --pty bash
+```
+
+Then ran the pipeline in the following dir with following command.
+
+```bash
+/data/humangen_kircherlab/hassan/wdl_latest/HiFi-human-WGS-WDL
+miniwdl run workflows/family.wdl -i backends/hpc/family.hpc.inputs.json --verbose
+```
+
+it is apparently running
+
+```bash
+2025-07-29 13:46:51.574 wdl.w:humanwgs_family.w:call-upstream-2-S011_X4924_WGSRv.w:call-pbmm2-0.t:call-split_input_bam.singularity WARNING: Could not find any nv files on this host!
+2025-07-29 13:46:51.574 wdl.w:humanwgs_family.w:call-upstream-1-S010_X4824_WGSRv.w:call-pbmm2-0.t:call-split_input_bam.singularity WARNING: Could not find any nv files on this host!
+2025-07-29 13:46:51.575 wdl.w:humanwgs_family.w:call-upstream-0-S009_X4724_WGSRv.w:call-pbmm2-0.t:call-split_input_bam.singularity WARNING: Could not find any nv files on this host!
+    0:01:37 elapsed    ▬▬▬        tasks finished: 0, ready: 0, running: 3    reserved CPUs: 48
+```

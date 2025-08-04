@@ -1,0 +1,67 @@
+---
+title: "Step by step guide to run rare disease on OMICS"
+---
+
+# Step 1 | Get the config files
+Generate the config files as follows, these can be found on the github repo:
+
+```bash
+omics.config
+omics.csv
+omics.yaml
+```
+
+# Step 2 | Download the test data files
+Download test data files after making sure that you are downloading in the right directory in from the config files:
+
+```bash
+wget https://raw.githubusercontent.com/nf-core/test-datasets/raredisease/testdata/1_171015_HHT5NDSXX_hugelymodelbat_XXXXXX_1.fastq.gz	
+wget https://raw.githubusercontent.com/nf-core/test-datasets/raredisease/testdata/1_171015_HHT5NDSXX_hugelymodelbat_XXXXXX_2.fastq.gz	
+``` 
+
+# Step 3 | Get generate the basic 3 reference files
+
+These are the three basic files that are needed ```intervals_wgs, intervals_y, fasta```.
+
+## Download the fasta file from the following command:
+```bash
+wget ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/001/405/GCA_000001405.15_GRCh38/seqs_for_alignment_pipelines.ucsc_ids/GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.gz
+gunzip GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.gz
+bgzip GCA_000001405.15_GRCh38_no_alt_analysis_set.fna
+```
+
+## Generate the wgs file:
+
+```bash
+samtools faidx GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.gz
+
+
+#!/bin/bash
+
+FAI="GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.gz.fai"
+FASTA="GCA_000001405.15_GRCh38_no_alt_analysis_set.fna.gz"
+OUTPUT="combined.intervals"
+
+echo "Creating $OUTPUT ..."
+
+# Header for BAM/SAM
+while IFS=$'\t' read -r seq len _; do
+    md5=$(samtools faidx "$FASTA" "$seq" | grep -v "^>" | tr -d '\n' | md5sum | awk '{print $1}')
+    echo -e "@SQ\tSN:$seq\tLN:$len\tM5:$md5\tUR:file:$FASTA"
+done < "$FAI" > "$OUTPUT"
+
+# BED-style genome entries
+while IFS=$'\t' read -r seq len _; do
+    echo -e "$seq\t1\t$len\t+\t."
+done < "$FAI" >> "$OUTPUT"
+
+echo "Done. Output written to $OUTPUT"
+```
+
+# Step 4 | Run the pipeline
+At this point you should be able to run the pipeline but the thing is that the pipeline will only do some basic QC and alignment at this point. To run the full pipeline the skip flag in the config file should be updated in such a way that the workflows that are needed to be run should be removed from that flag
+Run the pipeline using the following command:
+
+```bash
+nextflow run nf-core/raredisease -revision 2.6.0 -profile singularity -c omics.config -params-file omics.yaml
+```
