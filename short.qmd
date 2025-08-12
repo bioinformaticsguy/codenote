@@ -1542,4 +1542,4 @@ chr1    8501169 8503087 SVA_E   6406    +
 so I removed the chr from each file ```for f in grch38_*; do awk '{sub(/^chr/, "", $1); print}' "$f" > "${f%.bed}.npchr.bed"; done``` after creating the backup of the files and then tried the pipeline again annnnnnnnnnnnnnnnnnd I got the same error again. 
 
 Then I run the pipeline again with out using the resume flag so that if there is some problem with the files that were generated with the previous file then that could be resolved.
-Now the pipeline is appatently running and I will update the results here once it is done.
+Now the pipeline is apparently running and I will update the results here once it is done.
