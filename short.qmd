@@ -1326,3 +1326,220 @@ nextflow run nf-core/raredisease -revision 2.6.0 -c custom.config -params-file s
 ```
 
 # 29th July 2025 (Runing with custom config on OMICS)
+
+
+# 11th August 2025
+error on BIH with real sample which doesnot happen with the small sub sample:
+
+```bash
+
+[7c/514aaf] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_MOBILE_ELEMENTS:BCFTOOLS_REHEADER_ME (dna_01)                                        [100%] 7 of 7
+[3c/f9eb40] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_MOBILE_ELEMENTS:BCFTOOLS_SORT_ME (dna_01)                                            [100%] 7 of 7
+[19/7651d0] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_MOBILE_ELEMENTS:TABIX_ME_SPLIT (dna_01)                                              [100%] 7 of 7
+[d9/4f3de1] process > NFCORE_RAREDISEASE:RAREDISEASE:GENERATE_CYTOSURE_FILES:TIDDIT_COV_VCF2CYTOSURE (dna_01)                                  [  0%] 0 of 1
+Plus 55 more processes waiting for tasks…
+Execution cancelled -- Finishing pending tasks before exit
+WARN: Input tuple does not match tuple declaration in process `NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_TIDDIT:SVDB_MERGE_TIDDIT` -- offending value: [father:, mother:, probands:[dna_01], upd_children:[], id:dnafirst]
+WARN: Input tuple does not match tuple declaration in process `NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:SVDB_MERGE` -- offending value: [father:, mother:, probands:[dna_01], upd_children:[], id:dnafirst]
+WARN: Got an interrupted exception while taking agent result | java.lang.InterruptedException
+ERROR ~ Error executing process > 'NFCORE_RAREDISEASE:RAREDISEASE:CALL_MOBILE_ELEMENTS:RETROSEQ_CALL (dna_01)'
+
+Caused by:
+  Process `NFCORE_RAREDISEASE:RAREDISEASE:CALL_MOBILE_ELEMENTS:RETROSEQ_CALL (dna_01)` terminated with an error exit status (2)
+
+
+Command executed:
+
+  retroseq.pl \
+      -call \
+      --soft \
+      -bam dna_01_chr17.bam \
+      -input dna_01_chr17_retroseq_discover.tab \
+      -ref GCA_000001405.15_GRCh38_no_alt_analysis_set.fna \
+      -output dna_01_chr17_retroseq_call.vcf
+
+  cat <<-END_VERSIONS > versions.yml
+  "NFCORE_RAREDISEASE:RAREDISEASE:CALL_MOBILE_ELEMENTS:RETROSEQ_CALL":
+      retroseq_call: 1.5
+  END_VERSIONS
+
+Command exit status:
+  2
+
+Command output:
+  SPAN: LH00253:200:22JF7LLT4:1:2351:51700:6395
+  SPAN: LH00253:200:22JF7LLT4:1:2327:30367:14620
+  SPAN: LH00253:200:22JF7LLT4:1:2204:45252:5232
+  SPAN: LH00253:200:22JF7LLT4:1:1329:47946:9982
+  SPAN: LH00253:200:22JF7LLT4:1:2396:50082:12896
+  SPAN: LH00253:200:22JF7LLT4:1:2367:5385:14620
+  SPAN: LH00253:200:22JF7LLT4:1:2491:18135:15433
+  SPAN: LH00253:200:22JF7LLT4:1:2309:24890:24695
+  SPAN: LH00253:200:22JF7LLT4:1:2162:29986:15559
+  SPAN: LH00253:200:22JF7LLT4:1:1184:39120:16862
+  SPAN: LH00253:200:22JF7LLT4:1:2141:18313:23392
+  SPAN: LH00253:200:22JF7LLT4:1:1449:33012:1743
+  SPAN: LH00253:200:22JF7LLT4:1:2152:38934:23125
+  SPAN: LH00253:200:22JF7LLT4:1:1178:5700:17268
+  SPAN: LH00253:200:22JF7LLT4:1:1329:47962:9982
+  SPAN: LH00253:200:22JF7LLT4:1:2183:6558:6002
+  SPAN: LH00253:200:22JF7LLT4:1:2109:41709:4139
+  SPAN: LH00253:200:22JF7LLT4:1:2453:32276:2429
+  SPAN: LH00253:200:22JF7LLT4:1:2453:44581:12616
+  SPAN: LH00253:200:22JF7LLT4:1:2407:19445:18487
+  SPAN: LH00253:200:22JF7LLT4:1:2453:44597:12616
+  SPAN: LH00253:200:22JF7LLT4:1:1438:22430:3480
+  SPAN: LH00253:200:22JF7LLT4:1:2109:41685:4125
+  SPAN: LH00253:200:22JF7LLT4:1:2123:35374:25339
+  SPAN: LH00253:200:22JF7LLT4:1:2109:41693:4139
+  SPAN: LH00253:200:22JF7LLT4:1:2109:41701:4153
+  SPAN: LH00253:200:22JF7LLT4:1:2204:45260:5246
+  SPAN: LH00253:200:22JF7LLT4:1:2277:41134:13485
+  SPAN: LH00253:200:22JF7LLT4:1:2298:2472:19216
+  SPAN: LH00253:200:22JF7LLT4:1:2241:35399:7306
+  SPAN: LH00253:200:22JF7LLT4:1:2309:24898:24709
+  SPAN: LH00253:200:22JF7LLT4:1:2204:45277:5246
+  SPAN: LH00253:200:22JF7LLT4:1:1140:38206:1967
+  SPAN: LH00253:200:22JF7LLT4:1:2183:6566:5988
+  SPAN: LH00253:200:22JF7LLT4:1:1426:13014:23490
+  SPAN: LH00253:200:22JF7LLT4:1:2302:35407:20463
+  SPAN: LH00253:200:22JF7LLT4:1:1366:15643:4867
+  SPAN: LH00253:200:22JF7LLT4:1:2458:21193:20701
+  SPAN: LH00253:200:22JF7LLT4:1:2309:24906:24695
+  SPAN: LH00253:200:22JF7LLT4:1:1342:36742:1224
+  SPAN: LH00253:200:22JF7LLT4:1:1479:23822:7656
+  SPAN: LH00253:200:22JF7LLT4:1:2466:9608:10332
+  SPAN: LH00253:200:22JF7LLT4:1:2241:35391:7320
+  SPAN: LH00253:200:22JF7LLT4:1:2327:30359:14634
+  SPAN: LH00253:200:22JF7LLT4:1:2376:45754:5904
+
+  No same orientation: 0
+  Code: 3       0       34
+  Breakpoint score: 0 Flag: 3
+  Considering call chr22_KI270738v1_random      -461    705     unknown-L1      108
+
+Command error:
+  [mpileup] 1 samples in 1 input files
+  <mpileup> Set max per-file depth to 8000
+  Argument "" isn't numeric in division (/) at /opt/conda/bin/RetroSeq/bin/retroseq.pl line 1210, <$cfh> line 4.
+  [mpileup] 1 samples in 1 input files
+  <mpileup> Set max per-file depth to 8000
+  [mpileup] 1 samples in 1 input files
+  <mpileup> Set max per-file depth to 8000
+  [mpileup] 1 samples in 1 input files
+  <mpileup> Set max per-file depth to 8000
+  [mpileup] 1 samples in 1 input files
+  <mpileup> Set max per-file depth to 8000
+  [mpileup] 1 samples in 1 input files
+  <mpileup> Set max per-file depth to 8000
+  [mpileup] 1 samples in 1 input files
+  <mpileup> Set max per-file depth to 8000
+  Argument "" isn't numeric in division (/) at /opt/conda/bin/RetroSeq/bin/retroseq.pl line 1210, <$cfh> line 10.
+  [mpileup] 1 samples in 1 input files
+  <mpileup> Set max per-file depth to 8000
+  Argument "" isn't numeric in division (/) at /opt/conda/bin/RetroSeq/bin/retroseq.pl line 1210, <$cfh> line 11.
+  [mpileup] 1 samples in 1 input files
+  <mpileup> Set max per-file depth to 8000
+  [mpileup] 1 samples in 1 input files
+  <mpileup> Set max per-file depth to 8000
+  [mpileup] 1 samples in 1 input files
+  <mpileup> Set max per-file depth to 8000
+  [mpileup] 1 samples in 1 input files
+  <mpileup> Set max per-file depth to 8000
+  [mpileup] 1 samples in 1 input files
+  <mpileup> Set max per-file depth to 8000
+  [mpileup] 1 samples in 1 input files
+  <mpileup> Set max per-file depth to 8000
+  [mpileup] 1 samples in 1 input files
+  <mpileup> Set max per-file depth to 8000
+  [mpileup] 1 samples in 1 input files
+  <mpileup> Set max per-file depth to 8000
+  [mpileup] 1 samples in 1 input files
+  <mpileup> Set max per-file depth to 8000
+  [mpileup] 1 samples in 1 input files
+  <mpileup> Set max per-file depth to 8000
+  Argument "" isn't numeric in division (/) at /opt/conda/bin/RetroSeq/bin/retroseq.pl line 1210, <$cfh> line 21.
+  [mpileup] 1 samples in 1 input files
+  <mpileup> Set max per-file depth to 8000
+  Argument "" isn't numeric in division (/) at /opt/conda/bin/RetroSeq/bin/retroseq.pl line 1210, <$cfh> line 22.
+  [mpileup] 1 samples in 1 input files
+  <mpileup> Set max per-file depth to 8000
+  [mpileup] 1 samples in 1 input files
+  <mpileup> Set max per-file depth to 8000
+  Argument "" isn't numeric in division (/) at /opt/conda/bin/RetroSeq/bin/retroseq.pl line 1210, <$cfh> line 24.
+  ERROR: Invalid parameters passed to getCandidateBreakPointsDir: chr22_KI270738v1_random -461 705
+  INFO:    Cleaning up image...
+
+Work dir:
+  /data/cephfs-1/scratch/groups/kircher/users/alhassa_m/run_nf/rare/work/fb/0a30c7863faf6807ae4310fa4911d3
+
+Container:
+  /data/cephfs-1/home/users/alhassa_m/scratch/data_out_nf/singlecash/docker.io-clinicalgenomics-retroseq-1.5_9d4f3b5-1.img
+
+Tip: when you have fixed the problem you can continue the execution adding the option `-resume` to the run command line
+
+ -- Check '.nextflow.log' file for details
+ERROR ~ Pipeline failed. Please refer to troubleshooting docs: https://nf-co.re/docs/usage/troubleshooting
+
+ -- Check '.nextflow.log' file for details
+Join mismatch for the following entries:
+- key=[id:dna_01, sample:dna_01, sex:1, phenotype:2, paternal:0, maternal:0, case_id:dnafirst, num_lanes:1, read_group:'@RG\tID:dna_01\tPL:illumina\tSM:dna_01', single_end:false, interval:chr4, nr_of_intervals:25] values=[/data/cephfs-1/scratch/groups/kircher/users/alhassa_m/run_nf/rare/work/a6/0be42acac0db4518a638f8d4952bc0/dna_01_chr4.bam, /data/cephfs-1/scratch/groups/kircher/users/alhassa_m/run_nf/rare/work/71/61be25dee3a6e8c6fdc9ecb9596383/dna_01_chr4.bam.bai]
+- key=[id:dna_01, sample:dna_01, sex:1, phenotype:2, paternal:0, maternal:0, case_id:dnafirst, num_lanes:1, read_group:'@RG\tID:dna_01\tPL:illumina\tSM:dna_01', single_end:false, interval:chr3, nr_of_intervals:25] values=[/data/cephfs-1/scratch/groups/kircher/users/alhassa_m/run_nf/rare/work/27/0ec4e5f0fc4bab2ec89c74ece8486b/dna_01_chr3.bam, /data/cephfs-1/scratch/groups/kircher/users/alhassa_m/run_nf/rare/work/fc/2583fb95b1757f4d5321578334b125/dna_01_chr3.bam.bai]
+- key=[id:dna_01, sample:dna_01, sex:1, phenotype:2, paternal:0, maternal:0, case_id:dnafirst, num_lanes:1, read_group:'@RG\tID:dna_01\tPL:illumina\tSM:dna_01', single_end:false, interval:chr1, nr_of_intervals:25] values=[/data/cephfs-1/scratch/groups/kircher/users/alhassa_m/run_nf/rare/work/39/2d93d83b34709738ed2ef59c74541c/dna_01_chr1.bam, /data/cephfs-1/scratch/groups/kircher/users/alhassa_m/run_nf/rare/work/1b/52b53f8f916397371287e86c9128f7/dna_01_chr1.bam.bai]
+- key=[id:dna_01, sample:dna_01, sex:1, phenotype:2, paternal:0, maternal:0, case_id:dnafirst, num_lanes:1, read_group:'@RG\tID:dna_01\tPL:illumina\tSM:dna_01', single_end:false, interval:chr8, nr_of_intervals:25] values=[/data/cephfs-1/scratch/groups/kircher/users/alhassa_m/run_nf/rare/work/3a/ce1069abb299039648885aa0c6f493/dna_01_chr8.bam, /data/cephfs-1/scratch/groups/kircher/users/alhassa_m/run_nf/rare/work/78/ae731c2ae583d926c92cd140875508/dna_01_chr8.bam.bai]
+- key=[id:dna_01, sample:dna_01, sex:1, phenotype:2, paternal:0, maternal:0, case_id:dnafirst, num_lanes:1, read_group:'@RG\tID:dna_01\tPL:illumina\tSM:dna_01', single_end:false, interval:chr10, nr_of_intervals:25] values=[/data/cephfs-1/scratch/groups/kircher/users/alhassa_m/run_nf/rare/work/73/d9f5b491f9111a42dfd1a3b8e024aa/dna_01_chr10.bam, /data/cephfs-1/scratch/groups/kircher/users/alhassa_m/run_nf/rare/work/c9/a70370dd43f82a4d1da7420103d8d8/dna_01_chr10.bam.bai]
+- key=[id:dna_01, sample:dna_01, sex:1, phenotype:2, paternal:0, maternal:0, case_id:dnafirst, num_lanes:1, read_group:'@RG\tID:dna_01\tPL:illumina\tSM:dna_01', single_end:false, interval:chr11, nr_of_intervals:25] values=[/data/cephfs-1/scratch/groups/kircher/users/alhassa_m/run_nf/rare/work/73/24fd137ae5401bee8018111082bec4/dna_01_chr11.bam, /data/cephfs-1/scratch/groups/kircher/users/alhassa_m/run_nf/rare/work/aa/bed6a0a692670a0092b5afa2d741ed/dna_01_chr11.bam.bai]
+- key=[id:dna_01, sample:dna_01, sex:1, phenotype:2, paternal:0, maternal:0, case_id:dnafirst, num_lanes:1, read_group:'@RG\tID:dna_01\tPL:illumina\tSM:dna_01', single_end:false, interval:chr7, nr_of_intervals:25] values=[/data/cephfs-1/scratch/groups/kircher/users/alhassa_m/run_nf/rare/work/7f/b8e9ac0ccc125eade088d40999fba9/dna_01_chr7.bam, /data/cephfs-1/scratch/groups/kircher/users/alhassa_m/run_nf/rare/work/66/e750b3e402225b92c5b1e90985f6c2/dna_01_chr7.bam.bai]
+- key=[id:dna_01, sample:dna_01, sex:1, phenotype:2, paternal:0, maternal:0, case_id:dnafirst, num_lanes:1, read_group:'@RG\tID:dna_01\tPL:illumina\tSM:dna_01', single_end:false, interval:chr12, nr_of_intervals:25] values=[/data/cephfs-1/scratch/groups/kircher/users/alhassa_m/run_nf/rare/work/fc/f844bb1dd40f0d0d82cd2e57be031b/dna_01_chr12.bam, /data/cephfs-1/scratch/groups/kircher/users/alhassa_m/run_nf/rare/work/4c/7e842b38089837f110975ae40380fa/dna_01_chr12.bam.bai]
+- key=[id:dna_01, sample:dna_01, sex:1, phenotype:2, paternal:0, maternal:0, case_id:dnafirst, num_lanes:1, read_group:'@RG\tID:dna_01\tPL:illumina\tSM:dna_01', single_end:false, interval:chr6, nr_of_intervals:25] values=[/data/cephfs-1/scratch/groups/kircher/users/alhassa_m/run_nf/rare/work/0d/098438d39654a413c0b2e1e7e99b40/dna_01_chr6.bam, /data/cephfs-1/scratch/groups/kircher/users/alhassa_m/run_nf/rare/work/27/2f340fdc6613a22ae48b4d21d9e619/dna_01_chr6.bam.bai]
+- key=[id:dna_01, sample:dna_01, sex:1, phenotype:2, paternal:0, maternal:0, case_id:dnafirst, num_lanes:1, read_group:'@RG\tID:dna_01\tPL:illumina\tSM:dna_01', single_end:false, interval:chr13, nr_of_intervals:25] values=[/data/cephfs-1/scratch/groups/kircher/users/alhassa_m/run_nf/rare/work/7c/690fdfd4ee40e38f1a4e323708d4e1/dna_01_chr13.bam, /data/cephfs-1/scratch/groups/kircher/users/alhassa_m/run_nf/rare/work/fd/a89b5d290346d79f25f4f78703baa7/dna_01_chr13.bam.bai]
+(more omitted)
+
+
+ERROR ~ Pipeline failed. Please refer to troubleshooting docs: https://nf-co.re/docs/usage/troubleshooting
+
+ -- Check '.nextflow.log' file for details
+```
+
+
+# 12th August 2025
+So I trtied to figure out the problem with the mobile elements and I figured out that the problem was with the bed files in my files chr is mentioned but in the pipeline test files the chr is not mentioned.rather the chromosome number is mentioned. So I tried to change the bed file and then I will run the pipeline again and see how it goes.
+
+
+for referencce I am sharing the head of the files:
+
+
+Test file
+```bash
+[alhassa_m@hpc-login-1 moba]$ head grch37_g1k_sva_21.bed
+21      14420653        14420746        Retroposon/SVA
+21      14751241        14754012        Retroposon/SVA
+21      15306574        15309320        Retroposon/SVA
+21      15863668        15863736        Retroposon/SVA
+21      16392192        16392203        Retroposon/SVA
+21      17044513        17045169        Retroposon/SVA
+21      18533635        18533720        Retroposon/SVA
+21      18663826        18665435        Retroposon/SVA
+21      18958790        18958923        Retroposon/SVA
+21      19090957        19093424        Retroposon/SVA
+```
+
+My File 
+```bash
+[alhassa_m@hpc-cpu-223 moba]$ head grch38_sva.bed
+chr1    837098  837180  SVA_D   276     +
+chr1    6304393 6306236 SVA_D   9901    -
+chr1    6714507 6716330 SVA_D   6435    -
+chr1    7600485 7602002 SVA_D   11216   -
+chr1    7952097 7953558 SVA_D   5411    +
+chr1    8079151 8079209 SVA_F   308     -
+chr1    8260046 8260103 SVA_B   251     +
+chr1    8260237 8260251 SVA_B   251     +
+chr1    8500394 8501159 SVA_D   4299    +
+chr1    8501169 8503087 SVA_E   6406    +
+```
+
+so I removed the chr from each file ```for f in grch38_*; do awk '{sub(/^chr/, "", $1); print}' "$f" > "${f%.bed}.npchr.bed"; done``` after creating the backup of the files and then tried the pipeline again annnnnnnnnnnnnnnnnnd I got the same error again. 
+
+Then I run the pipeline again with out using the resume flag so that if there is some problem with the files that were generated with the previous file then that could be resolved.
+Now the pipeline is appatently running and I will update the results here once it is done.
