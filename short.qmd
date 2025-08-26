@@ -1543,3 +1543,343 @@ so I removed the chr from each file ```for f in grch38_*; do awk '{sub(/^chr/, "
 
 Then I run the pipeline again with out using the resume flag so that if there is some problem with the files that were generated with the previous file then that could be resolved.
 Now the pipeline is apparently running and I will update the results here once it is done.
+
+
+# 13th August 2025
+- last day I debugged with Martin and we proposed an idea that there could be a  problem in the bed files so that there are regions which are not in the reference so we, found those regions they were fix and alt regions we removd them but the porblem still presists.
+
+The next idea is to check the length of the regions should not be longer than the length of the chromosome in the file.
+
+But before that I wanna go to the files mentioned in the error and look into them.
+
+
+I tried a few thing but eventually ran the pipeline without the me calling so that I know which workflow is causing the problem, I have tried the resume function not the pipeline is left with 47 more tasks.
+
+we checekd the files and for small sample the tab file (dnaS_01_chr17_retroseq_discover.tab) happens to be empty. 
+
+
+you can bind with the soft link path and then you can see the files and then run the seprate commands as well.
+
+
+```bash
+apptainer shell --bind /data/cephfs-1/scratch/groups/kircher/users/alhassa_m:/home   /data/cephfs-1/home/users/alhassa_m/scratch/data_out_nf/singlecash/docker.io-clinicalgenomics-retroseq-1.5_9d4f3b5-1.img
+```
+
+
+# 18th August 2025
+So finally my pipline in BIH was able to run successfully with the real sample and the output was as follows:
+
+
+```bash
+[72/f2f918] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_SNV:POSTPROCESS_MT_CALLS:ADD_VARCALLER_TO_BED (mutect2)                [100%] 1 of 1, cached: 1 :heavy_check_mark:
+[e2/11400c] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_SNV:POSTPROCESS_MT_CALLS:BCFTOOLS_ANNOTATE (dnafirst)                 [100%] 1 of 1 :heavy_check_mark:
+[fc/d4771a] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_SNV:POSTPROCESS_MT_CALLS:TABIX_ANNOTATE (dnafirst)                   [100%] 1 of 1 :heavy_check_mark:
+[a7/473d68] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_MANTA:MANTA (dnafirst)                   [100%] 2 of 2, failed: 1, retries: 1 :heavy_check_mark:
+[11/11be40] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_MANTA:BCFTOOLS_VIEW_MANTA (dnafirst)            [100%] 1 of 1 :heavy_check_mark:
+[7f/173d00] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_TIDDIT:TIDDIT_SV (dna_01)                 [100%] 2 of 2, failed: 1, retries: 1 :heavy_check_mark:
+[4c/dc05ca] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_TIDDIT:INDEX_TIDDIT (dna_01)                [100%] 1 of 1 :heavy_check_mark:
+[4b/b29e53] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_TIDDIT:BCFTOOLS_VIEW_TIDDIT (dna_01)            [100%] 1 of 1 :heavy_check_mark:
+[36/50a7b5] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_TIDDIT:SVDB_MERGE_TIDDIT (dnafirst)            [100%] 1 of 1 :heavy_check_mark:
+[c3/0a934d] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_CNVNATOR:CNVNATOR_RD (dna_01)               [100%] 1 of 1 :heavy_check_mark:
+[ae/0f1447] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_CNVNATOR:CNVNATOR_HIST (dna_01)              [100%] 1 of 1 :heavy_check_mark:
+[9f/5aa34d] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_CNVNATOR:CNVNATOR_STAT (dna_01)              [100%] 1 of 1 :heavy_check_mark:
+[c8/b2f045] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_CNVNATOR:CNVNATOR_PARTITION (dna_01)            [100%] 1 of 1 :heavy_check_mark:
+[39/418e2e] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_CNVNATOR:CNVNATOR_CALL (dna_01)              [100%] 1 of 1 :heavy_check_mark:
+[ed/ab72be] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_CNVNATOR:CNVNATOR_CONVERT2VCF (dna_01)           [100%] 1 of 1 :heavy_check_mark:
+[84/51ea5c] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_CNVNATOR:INDEX_CNVNATOR (dna_01)              [100%] 1 of 1 :heavy_check_mark:
+[2c/f09338] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_CNVNATOR:BCFTOOLS_VIEW_CNVNATOR (dna_01)          [100%] 1 of 1 :heavy_check_mark:
+[d6/dfd2ff] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_CNVNATOR:SVDB_MERGE_CNVNATOR (dnafirst)          [100%] 1 of 1 :heavy_check_mark:
+[9c/29ee40] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_MT:MT_DELETION (dna_01)                  [100%] 1 of 1 :heavy_check_mark:
+[c0/39ef38] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:SVDB_MERGE (dnafirst)                       [100%] 1 of 1 :heavy_check_mark:
+[f2/d2108b] process > NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:TABIX_TABIX (dnafirst)                       [100%] 1 of 1 :heavy_check_mark:
+[3b/780497] process > NFCORE_RAREDISEASE:RAREDISEASE:ANNOTATE_STRUCTURAL_VARIANTS:SVDB_QUERY_DB (dnafirst)                    [100%] 1 of 1 :heavy_check_mark:
+[e3/da3cf3] process > NFCORE_RAREDISEASE:RAREDISEASE:ANNOTATE_STRUCTURAL_VARIANTS:PICARD_SORTVCF (dnafirst)                   [100%] 1 of 1 :heavy_check_mark:
+[79/3f80db] process > NFCORE_RAREDISEASE:RAREDISEASE:ANNOTATE_STRUCTURAL_VARIANTS:BCFTOOLS_VIEW (dnafirst)                    [100%] 1 of 1 :heavy_check_mark:
+[b2/8598e8] process > NFCORE_RAREDISEASE:RAREDISEASE:GENERATE_CYTOSURE_FILES:TIDDIT_COV_VCF2CYTOSURE (dna_01)                  [100%] 1 of 1 :heavy_check_mark:
+[51/60711b] process > NFCORE_RAREDISEASE:RAREDISEASE:MULTIQC                                           [100%] 1 of 1 :heavy_check_mark:
+Plus 23 more processes waiting for tasks…
+-[nf-core/raredisease] Pipeline completed successfully-
+Completed at: 16-Aug-2025 20:45:33
+Duration  : 1d 11h 6m 2s
+CPU hours  : 605.9 (3.2% cached, 15.8% failed)
+Succeeded  : 77
+Cached   : 17
+Failed   : 2
+```
+
+
+it had to retry two jobs because of resoursces and for the failed jobs I have notied the resoursces requested so that samples do not fail in the future.
+
+```bash
+18164381                nf-NFCORE_RAREDISEASE_RAREDISEASE_CALL_STRUCTURAL_VARIANTS_CALL_SV_MANTA_MANTA_(dnafirst)  COMPLETED   10:53:01         12        72G
+
+18164380             nf-NFCORE_RAREDISEASE_RAREDISEASE_CALL_STRUCTURAL_VARIANTS_CALL_SV_TIDDIT_TIDDIT_SV_(dna_01)  COMPLETED   06:48:53         12        72G
+```
+
+The pipeline currently works with the following files;
+
+https://github.com/bioinformaticsguy/rare-disease-pipeline/releases/tag/v1.0.2-beta
+
+
+# 19th August 2025
+
+I got the follwing error when I tried to annotate the snvs by unskipping the "snv_annotation". 
+
+```bash
+[68/4bdffb] process > NFCORE_RAREDISEASE:RAREDISEASE:ANNOTATE_STRUCTURAL_VARIANTS:PICARD_SORTVCF (dnaSfirst)                                   [100%] 1 of 1 ✔
+[96/60d689] process > NFCORE_RAREDISEASE:RAREDISEASE:ANNOTATE_STRUCTURAL_VARIANTS:BCFTOOLS_VIEW (dnaSfirst)                                    [100%] 1 of 1 ✔
+[84/758049] process > NFCORE_RAREDISEASE:RAREDISEASE:GENERATE_CYTOSURE_FILES:TIDDIT_COV_VCF2CYTOSURE (dnaS_01)                                 [100%] 1 of 1 ✔
+Plus 51 more processes waiting for tasks…
+Execution cancelled -- Finishing pending tasks before exit
+-[nf-core/raredisease] Pipeline completed with errors-
+ERROR ~ Error executing process > 'NFCORE_RAREDISEASE:RAREDISEASE:ANNOTATE_GENOME_SNVS:BCFTOOLS_VIEW (dnaSfirst)'
+
+Caused by:
+  Process `NFCORE_RAREDISEASE:RAREDISEASE:ANNOTATE_GENOME_SNVS:BCFTOOLS_VIEW (dnaSfirst)` terminated with an error exit status (255)
+
+
+Command executed:
+
+  bcftools view \
+      --output dnaSfirst_rhocall_filter_0001-scattered.vcf.gz \
+       \
+       \
+       \
+      --output-type z --exclude "INFO/GNOMADAF > 0.70 | INFO/GNOMADAF_popmax > 0.70"  \
+      --threads 6 \
+      dnaSfirst_rhocall_vcfanno_0001-scattered.vcf.gz
+
+  cat <<-END_VERSIONS > versions.yml
+  "NFCORE_RAREDISEASE:RAREDISEASE:ANNOTATE_GENOME_SNVS:BCFTOOLS_VIEW":
+      bcftools: $(bcftools --version 2>&1 | head -n1 | sed 's/^.*bcftools //; s/ .*$//')
+  END_VERSIONS
+
+Command exit status:
+  255
+
+Command output:
+  (empty)
+
+Command error:
+  INFO:    Converting SIF file to temporary sandbox...
+  Error: cannot use arithmetic operators to compare strings and numbers
+  INFO:    Cleaning up image...
+
+Work dir:
+  /data/cephfs-1/scratch/groups/kircher/users/alhassa_m/run_nf/rare/work/7a/528463c1e4361132e9a1fd09fba1ff
+
+Container:
+  /data/cephfs-1/home/users/alhassa_m/scratch/data_out_nf/singlecash/depot.galaxyproject.org-singularity-bcftools-1.20--h8b25389_0.img
+
+Tip: view the complete command output by changing to the process work dir and entering the command `cat .command.out`
+
+ -- Check '.nextflow.log' file for details
+ERROR ~ Pipeline failed. Please refer to troubleshooting docs: https://nf-co.re/docs/usage/troubleshooting
+
+ -- Check '.nextflow.log' file for details
+```
+
+
+# 20th August 2025
+
+## All Tools
+
+
+## Currently skipped Subtool testing
+
+
+
+## Working
+- smncopynumbercaller
+- ngsbits
+- qualimap
+- haplogrep3
+- fastp
+
+
+## Not working
+- gens
+
+```bash
+
+!! Only displaying parameters that differ from the pipeline defaults !!
+------------------------------------------------------
+* The pipeline
+    https://doi.org/10.5281/zenodo.7995798
+
+* The nf-core framework
+    https://doi.org/10.1038/s41587-020-0439-x
+
+* Software dependencies
+    https://github.com/nf-core/raredisease/blob/master/CITATIONS.md
+
+params.gens_gnomad_pos not set.
+params.gens_interval_list not set.
+params.gens_pon_female not set.
+params.gens_pon_male not set.
+
+Set missing parameters and restart the run. For more information please check usage documentation on github.
+```
+
+
+
+- eklipse
+```bash
+problem with downloading the singularity immage
+
+Pulling Singularity image https://depot.galaxyproject.org/singularity/eklipse:1.8--hdfd78af_1 [cache /data/cephfs-1/home/users/alhassa_m/scratch/data_out_nf/singlecash/depot.galaxyproject.org-singularity-eklipse-1.8--hdfd78af_1.img]
+
+ERROR ~ Error executing process > 'NFCORE_RAREDISEASE:RAREDISEASE:CALL_STRUCTURAL_VARIANTS:CALL_SV_MT:EKLIPSE (1)'
+
+Caused by:
+  Failed to pull singularity image
+    command: singularity pull  --name depot.galaxyproject.org-singularity-eklipse-1.8--hdfd78af_1.img.pulling.1755681332983 https://depot.galaxyproject.org/singularity/eklipse:1.8--hdfd78af_1 > /dev/null
+    status : 143
+    hint   : Try and increase singularity.pullTimeout in the config (current is "20m")
+    message:
+      INFO:    Downloading network image
+
+
+
+ -- Check '.nextflow.log' file for details
+ERROR ~ Pipeline failed. Please refer to troubleshooting docs: https://nf-co.re/docs/usage/troubleshooting
+
+ -- Check '.nextflow.log' file for details
+
+```
+
+- germlinecnvcaller
+```bash
+needs these parameters
+!! Only displaying parameters that differ from the pipeline defaults !!
+------------------------------------------------------
+* The pipeline
+    https://doi.org/10.5281/zenodo.7995798
+
+* The nf-core framework
+    https://doi.org/10.1038/s41587-020-0439-x
+
+* Software dependencies
+    https://github.com/nf-core/raredisease/blob/master/CITATIONS.md
+
+params.ploidy_model not set.
+params.gcnvcaller_model not set.
+params.readcount_intervals not set.
+
+Set missing parameters and restart t
+```
+
+- peddy
+Huge error
+
+```bash
+[49/8ef106] process > NFCORE_RAREDISEASE:RAREDISEASE:PEDDY (dnaSfirst)                                                                         [100%] 1 of 1, failed: 1 ✘
+[0a/4f1c85] process > NFCORE_RAREDISEASE:RAREDISEASE:GENERATE_CYTOSURE_FILES:TIDDIT_COV_VCF2CYTOSURE (dnaS_01)                                 [100%] 1 of 1, cached: 1 ✔
+[-        ] process > NFCORE_RAREDISEASE:RAREDISEASE:MULTIQC                                                                                   [  0%] 0 of 1
+Plus 37 more processes waiting for tasks…
+Pulling Singularity image https://depot.galaxyproject.org/singularity/peddy:0.4.8--pyh5e36f6f_0 [cache /data/cephfs-1/home/users/alhassa_m/scratch/data_out_nf/singlecash/depot.galaxyproject.org-singularity-peddy-0.4.8--pyh5e36f6f_0.img
+Execution cancelled -- Finishing pending tasks before exit
+-[nf-core/raredisease] Pipeline completed with errors-
+ERROR ~ Error executing process > 'NFCORE_RAREDISEASE:RAREDISEASE:PEDDY (dnaSfirst)'
+
+Caused by:
+  Process `NFCORE_RAREDISEASE:RAREDISEASE:PEDDY (dnaSfirst)` terminated with an error exit status (1)
+
+
+Command executed:
+
+  peddy \
+       \
+      --prefix dnaSfirst \
+      --plot \
+      -p 2 \
+      dnaSfirst_snv.vcf.gz \
+      dnaSfirst.ped
+
+  cat <<-END_VERSIONS > versions.yml
+  "NFCORE_RAREDISEASE:RAREDISEASE:PEDDY":
+      peddy: $( peddy --version 2>&1 | tail -1 | sed 's/peddy, version //' )
+  END_VERSIONS
+
+Command exit status:
+  1
+
+Command output:
+  (empty)
+
+Command error:
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:50686371-50686371
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:50694297-50694297
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:50704028-50704028
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:50713866-50713866
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:50721492-50721492
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:50722167-50722167
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:50725553-50725553
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:50755109-50755109
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:50877166-50877166
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:50882338-50882338
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:50894987-50894987
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:50921694-50921694
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:50928012-50928012
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:50941985-50941985
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:50944163-50944163
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:50945256-50945256
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:50962259-50962259
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:50964255-50964255
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:50969647-50969647
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:50987175-50987175
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:50987843-50987843
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:51009953-51009953
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:51042322-51042322
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:51042484-51042484
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:51048721-51048721
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:51064039-51064039
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:51065361-51065361
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:51153371-51153371
+  no intervals found for b'dnaSfirst_snv.vcf.gz' at chr22:51220734-51220734
+  Traceback (most recent call last):
+    File "/usr/local/bin/peddy", line 10, in <module>
+      sys.exit(cli())
+    File "/usr/local/lib/python3.9/site-packages/click/core.py", line 1137, in __call__
+      return self.main(*args, **kwargs)
+    File "/usr/local/lib/python3.9/site-packages/click/core.py", line 1062, in main
+      rv = self.invoke(ctx)
+    File "/usr/local/lib/python3.9/site-packages/click/core.py", line 1404, in invoke
+      return ctx.invoke(self.callback, **ctx.params)
+    File "/usr/local/lib/python3.9/site-packages/click/core.py", line 763, in invoke
+      return __callback(*args, **kwargs)
+    File "/usr/local/lib/python3.9/site-packages/peddy/cli.py", line 208, in peddy
+      for check, df, background_df in map(run, [(check, ped, vcf, plot, prefix, each, procs, sites) for check
+    File "/usr/local/lib/python3.9/site-packages/peddy/cli.py", line 42, in run
+      df = getattr(p, check)(vcf, plot=plot, each=each, ncpus=ncpus,
+    File "/usr/local/lib/python3.9/site-packages/peddy/peddy.py", line 866, in het_check
+      sample_ranges, sites, gt_types = cyvcf2.par_het(vcf_path, samps, ncpus,
+    File "cyvcf2/cyvcf2.pyx", line 80, in cyvcf2.cyvcf2.par_het
+    File "cyvcf2/cyvcf2.pyx", line 810, in cyvcf2.cyvcf2.VCF._finish_het
+  IndexError: index 0 is out of bounds for axis 0 with size 0
+  INFO:    Cleaning up image...
+
+Work dir:
+  /data/cephfs-1/scratch/groups/kircher/users/alhassa_m/run_nf/rare/work/49/8ef106c2b9b743e12432dd255e3817
+
+Container:
+  /data/cephfs-1/home/users/alhassa_m/scratch/data_out_nf/singlecash/depot.galaxyproject.org-singularity-peddy-0.4.8--pyh5e36f6f_0.img
+
+Tip: you can replicate the issue by changing to the process work dir and entering the command `bash .command.run`
+
+ -- Check '.nextflow.log' file for details
+ERROR ~ Pipeline failed. Please refer to troubleshooting docs: https://nf-co.re/docs/usage/troubleshooting
+
+ -- Check '.nextflow.log' file for details
+```
+
+
+# 26th August 2025
+
+structure of the vcf file from gnomad
+```bash
+#CHROM  POS     ID      REF     ALT     QUAL    FILTER  INFO
+21      9411211 rs1316595271    A       G       43.66   RF      AF=4.74834e-05;AF_popmax=0.000100523
+21      9411219 rs1351680335    T       C       103.6   PASS    AF=4.23944e-05;AF_popmax=8.8968e-05
+21      9411223 rs1456505548    T       A       337.32  RF      AF=0.000160398;AF_popmax=0.000555401
+```

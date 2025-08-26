@@ -83,4 +83,28 @@ cmp -s lab_c_md5.txt my_c_md5.txt && echo "✅ All lines match!" || echo "❌ Di
 # To check current running things in OMICS
 
 ```bash
-squeue -u hassan -o "%.18i %.9P %.20j %.8u %.2t %.10M %.10L %.6D %.6C %.10m %R"```
+squeue -u hassan -o "%.18i %.9P %.20j %.8u %.2t %.10M %.10L %.6D %.6C %.10m %R"
+```
+
+
+# Insatalling Demultiples 
+
+
+# in Omics
+
+```nash
+conda create -n t3a 
+conda activate t3a   
+conda install demultiplex
+conda install Levenshtein 
+```
+
+# in BIH it is needed to instal
+
+```bash
+
+install demultiples via pip 
+and then install 
+
+conda install setuptools
+```
