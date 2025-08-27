@@ -1883,3 +1883,13 @@ structure of the vcf file from gnomad
 21      9411219 rs1351680335    T       C       103.6   PASS    AF=4.23944e-05;AF_popmax=8.8968e-05
 21      9411223 rs1456505548    T       A       337.32  RF      AF=0.000160398;AF_popmax=0.000555401
 ```
+
+I ran the pipeline with using the file from the genomad and it apparently worked. 
+
+It was a similar file. Now I just want to make sure that there is no AF_popmax tag in the file that I used as well. 
+
+I checked it by following command and it was not there:
+
+```bash
+(t3a) [alhassa_m@hpc-cpu-150 vcfanno]$ bcftools view -h gnomad.genomes.v4.1.sites.chr17.vcf.bgz | grep AF_popmax
+```
