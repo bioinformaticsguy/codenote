@@ -1893,3 +1893,9 @@ I checked it by following command and it was not there:
 ```bash
 (t3a) [alhassa_m@hpc-cpu-150 vcfanno]$ bcftools view -h gnomad.genomes.v4.1.sites.chr17.vcf.bgz | grep AF_popmax
 ```
+
+
+# 1st September 2025
+- now the pipeline is able to work in the BIH scratch cluster for most of the workflow using this release of the pipeline.
+https://github.com/bioinformaticsguy/rare-disease-pipeline/tree/v1.0.3-beta
+

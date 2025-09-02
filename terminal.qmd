@@ -108,3 +108,16 @@ and then install
 
 conda install setuptools
 ```
+
+
+
+# Connecting to Biosinthia
+
+SFTP do not work in the headnode in the omics cluster. 
+Keys are located in the `~/.ssh/` directory.
+Pem file is needed to be used in the linux and ppk file is needed to be used in wondows.
+
+
+```code
+sftp -i /ssh-path-to-your-folder/private-key.pem kdhumuksh1@sftp2.bioscientia.de
+```
