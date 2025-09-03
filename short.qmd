@@ -1,6 +1,8 @@
 ---
 title: "Short Read"
 ---
+
+
 # Short Read Pipeline Documentation
 This page serves as a comprehensive guide to the Short Read Pipeline. It tracks the versions of the pipeline used throughout the analysis, along with the exact terminal commands executed to run each step of the pipeline. By documenting both the pipeline versions and the commands, this page ensures reproducibility and transparency in the analysis workflow. Each section includes:
 

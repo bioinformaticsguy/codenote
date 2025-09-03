@@ -1,0 +1,32 @@
+---
+title: "Meetings with Martin"
+---
+
+# 3rd September 2025
+
+- Long
+    - Got a new trio for long read.
+        - I have put it in RAW longread data folder.
+
+- Short
+    - Pipeline working for almost all the workflows except the following.
+        - snv_annotation
+        - repeat_calling, repeat_annotation
+        - me_calling, me_annotation (out of bound regions did not work)
+
+        - Thinking of skipping annotations as wel can standardize for short and long read to have same annotations for each?
+
+    - Retriving reads for Short read samples. 
+        - Kiristian suggested to find reads with specific barcodes in the Undetermined reads.
+            - GS369: 67643318 (New Sample)
+            - KIGS24: 61471184
+                - Total reads numbers confusion MultiQC-FastQC (143.5M + 142.9M = ~285M) but mosedepth 704.9M.
+
+    - Running Samples 100 in BIH or OMICS since we have data on both sides now?
+- Tertiary
+    - Creating containers for the analysis so that it can run smoothly in the cluster as installing packages via conda envs was taking too long just installing R in a conda env was taking for ever.
+
+- Miscellaneous
+    - Challenge, [CAGi7](https://genomeinterpretation.org/cagi7-annotate-all-missense.html)
+    - Is it possible to move group call at 3pm as the friday prayer is from 2-3pm now.
+

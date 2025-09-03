@@ -5,7 +5,6 @@ title: "Tempo Notes"
 
 
 
-
 I have been able to run a pipeline that finds SNVs, SV tandem repets and indels. I have also found some overlapping genes from genelists related to DSD, now the question is that if we just have to pin point the genes which have been previously related to DSD then what is the point of spending so much money on wgs of long and short reads. Can you suggest me how can I prioritize the varients in different tiers so that I can narrow down the varients to novel varients that might be potential cause of the DSD phenotype?
 
 

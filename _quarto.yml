@@ -29,6 +29,10 @@ website:
         - href: tempo.qmd
         - href: scripts.qmd
 
+      - section: "Meetings"
+        contents:
+        - href: martin.qmd
+
 
 metadata:
   author: "Ali Hassan"
