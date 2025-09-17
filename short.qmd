@@ -1899,28 +1899,30 @@ I checked it by following command and it was not there:
 
 # 1st September 2025
 - now the pipeline is able to work in the BIH scratch cluster for most of the workflow using this release of the pipeline.
-https://github.com/bioinformaticsguy/rare-disease-pipeline/tree/v1.0.3-beta
+https://github.com/bioinformaticsguy/rare-disease-pipeline/tree/v1.0.3-beta.
 
 
 
- # 17th September 2025
- - Today I worked on the demultiplexing using fqtk. I figured out that in the metadata file the barcodes can be combined without any sign and then both files can be provided again.
 
- I ran it with the following command: 
+# 17th September 2025
+
+- Today I worked on the demultiplexing using fqtk. I figured out that in the metadata file the barcodes can be combined without any sign and then both files can be provided again.
+
+I ran it with the following command: 
 
 
- ```bash 
+```bash 
 fqtk demux \
     --inputs r1.fq.gz i1.fq.gz i2.fq.gz r2.fq.gz \
     --read-structures 8B92T 8B 8B 100T \
     --sample-metadata metadata.tsv \
     --output output_folder
- ```
+```
 
 
- here I am noting down the sizes of the demultiplexing to see if there some extra reads added to the demultiplezing later on as currently the size for GS197 is 25G.
+here I am noting down the sizes of the demultiplexing to see if there some extra reads added to the demultiplezing later on as currently the size for GS197 is 25G.
 
- ```bash
+```bash
 hassan@headnode01:/data/humangen_kircherlab/Users/hassan/data/combined_fq$ du -sh output/*
 25G     output/GS197.R1.fq.gz
 26G     output/GS197.R2.fq.gz
@@ -1942,4 +1944,4 @@ hassan@headnode01:/data/humangen_kircherlab/Users/hassan/data/combined_fq$ du -s
 16G     output/GS370.R2.fq.gz
 14G     output/GS377.R1.fq.gz
 16G     output/GS377.R2.fq.gz
- ```
+```
