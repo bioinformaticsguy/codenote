@@ -15,14 +15,17 @@ title: "Meetings with Martin"
         - me_calling, me_annotation (out of bound regions did not work)
 
         - Thinking of skipping annotations as wel can standardize for short and long read to have same annotations for each?
+            - SNV annotations are most important, So that is needed to be done and also it is needed to adapt to the pipeline.
 
     - Retriving reads for Short read samples. 
         - Kiristian suggested to find reads with specific barcodes in the Undetermined reads.
             - GS369: 67643318 (New Sample)
             - KIGS24: 61471184
                 - Total reads numbers confusion MultiQC-FastQC (143.5M + 142.9M = ~285M) but mosedepth 704.9M.
+        - *** Combining all the files and doing demultiplexing again. We need to do this when we use different tools there will be differene in sample stratistics. Link avalible (https://github.com/fulcrumgenomics/fqtk) 
 
     - Running Samples 100 in BIH or OMICS since we have data on both sides now?
+
 - Tertiary
     - Creating containers for the analysis so that it can run smoothly in the cluster as installing packages via conda envs was taking too long just installing R in a conda env was taking for ever.
 

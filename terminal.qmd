@@ -121,3 +121,11 @@ Pem file is needed to be used in the linux and ppk file is needed to be used in 
 ```code
 sftp -i /ssh-path-to-your-folder/private-key.pem kdhumuksh1@sftp2.bioscientia.de
 ```
+
+
+# on_flash sync
+
+```code 
+sudo mount -t drvfs D: /mnt/d
+rsync -avh --inplace /mnt/c/Users/Ali/Documents/phd_Ali_Hassan/on_flash/ /mnt/d/
+```
