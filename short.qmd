@@ -1912,11 +1912,13 @@ I ran it with the following command:
 
 
 ```bash 
-fqtk demux \
-    --inputs r1.fq.gz i1.fq.gz i2.fq.gz r2.fq.gz \
-    --read-structures 8B92T 8B 8B 100T \
-    --sample-metadata metadata.tsv \
-    --output output_folder
+fqtk demux \     
+    --inputs combined_R1.fq.gz  combined_R2.fq.gz \   
+    --read-structures 150T10B 150T10B \   
+    --sample-metadata metadata_combined.tsv \    
+    --output output \
+    --threads 32 \
+    --max-mismatches 2
 ```
 
 
