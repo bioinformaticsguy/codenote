@@ -271,3 +271,18 @@ it is apparently running
 2025-07-29 13:46:51.575 wdl.w:humanwgs_family.w:call-upstream-0-S009_X4724_WGSRv.w:call-pbmm2-0.t:call-split_input_bam.singularity WARNING: Could not find any nv files on this host!
     0:01:37 elapsed    ▬▬▬        tasks finished: 0, ready: 0, running: 3    reserved CPUs: 48
 ```
+
+
+
+# 23rd September 2025
+
+Command to run HG002 Trio PacBio WDL Pipeline
+
+```bash
+hassan@headnode01:/data/humangen_kircherlab/Users/hassan/wdl_latest/HiFi-human-WGS-WDL$ sbatch --export=TRIO_NAME=HG002,\
+CHILD_BAM=/data/humangen_kircherlab/Users/hassan/data/giab/giab_bam_data/GIAB_trio/m84039_241001_220042_s2.hifi_reads.bc2018.bam,\
+MOTHER_BAM=/data/humangen_kircherlab/Users/hassan/data/giab/giab_bam_data/GIAB_trio/m84039_241002_020632_s4.hifi_reads.bc2021.bam,\
+FATHER_BAM=/data/humangen_kircherlab/Users/hassan/data/giab/giab_bam_data/GIAB_trio/m84039_241002_000337_s3.hifi_reads.bc2020.bam \
+run_wdl.slurm
+
+```
