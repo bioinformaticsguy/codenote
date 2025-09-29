@@ -1947,3 +1947,19 @@ hassan@headnode01:/data/humangen_kircherlab/Users/hassan/data/combined_fq$ du -s
 14G     output/GS377.R1.fq.gz
 16G     output/GS377.R2.fq.gz
 ```
+
+
+# 29th September 2025
+- I ran the samples for Nadine and this sample failed: 
+
+This sample was apparently not part of the sample that nadine wanted to be run, I am not sure how it ended up in the sample sheet and hoow it failed.
+
+```
+GS467,007,/data/humangen_sfb1665_seqdata/short_read/raw//A5020_DNA_98_GS467/A5020_DNA_98_GS467_S157_L007_R1_001.fastq.gz,/data/humangen_sfb1665_seqdata/short_read/raw//A5020_DNA_98_GS467/A5020_DNA_98_GS467_S157_L007_R2_001.fastq.gz,0,2,0,0,case_GS467
+GS467,008,/data/humangen_sfb1665_seqdata/short_read/raw//A5020_DNA_98_GS467/A5020_DNA_98_GS467_S157_L008_R1_001.fastq.gz,/data/humangen_sfb1665_seqdata/short_read/raw//A5020_DNA_98_GS467/A5020_DNA_98_GS467_S157_L008_R2_001.fastq.gz,0,2,0,0,case_GS467
+GS467,003,/data/humangen_sfb1665_seqdata/short_read/raw//A5020_DNA_98_GS467/A5020_DNA_98_GS467_S51_L003_R1_001.fastq.gz,/data/humangen_sfb1665_seqdata/short_read/raw//A5020_DNA_98_GS467/A5020_DNA_98_GS467_S51_L003_R2_001.fastq.gz,0,2,0,0,case_GS467
+GS467,006,/data/humangen_sfb1665_seqdata/short_read/raw//A5020_DNA_98_GS467/A5020_DNA_98_GS467_S51_L006_R1_001.fastq.gz,/data/humangen_sfb1665_seqdata/short_read/raw//A5020_DNA_98_GS467/A5020_DNA_98_GS467_S51_L006_R2_001.fastq.gz,0,2,0,0,case_GS467
+GS467,007,/data/humangen_sfb1665_seqdata/short_read/raw//A5020_DNA_98_GS467/A5020_DNA_98_GS467_S51_L007_R1_001.fastq.gz,/data/humangen_sfb1665_seqdata/short_read/raw//A5020_DNA_98_GS467/A5020_DNA_98_GS467_S51_L007_R2_001.fastq.gz,0,2,0,0,case_GS467
+GS467,008,/data/humangen_sfb1665_seqdata/short_read/raw//A5020_DNA_98_GS467/A5020_DNA_98_GS467_S51_L008_R1_001.fastq.gz,/data/humangen_sfb1665_seqdata/short_read/raw//A5020_DNA_98_GS467/A5020_DNA_98_GS467_S51_L008_R2_001.fastq.gz,0,2,0,0,case_GS467
+
+```
