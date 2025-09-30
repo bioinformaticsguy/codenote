@@ -1973,3 +1973,12 @@ Command to get the annotations:
 ```code
 singularity exec ensamble_vep/vep.sif vep   --dir ensamble_vep/vep_data/   -i ../99999_testing_annotations/call_snv/genome/big_test_snv.vcf.gz   --cache --offline --vcf   -o ../00000_vep_output/big_test_snv.vcf.gz    --plugin CADD,/data/humangen_kircherlab/Users/hassan/run_rare/rare-disease-pipeline/data/grch38/vcfanno/cadd/whole_genome_SNVs.tsv.gz
 ```
+
+
+
+Command to get the local pipeline to run:
+
+
+```code
+nextflow run main.nf -profile test,docker --outdir /0000_outdir
+```
