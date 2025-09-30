@@ -1954,6 +1954,8 @@ hassan@headnode01:/data/humangen_kircherlab/Users/hassan/data/combined_fq$ du -s
 
 This sample was apparently not part of the sample that nadine wanted to be run, I am not sure how it ended up in the sample sheet and hoow it failed.
 
+I checked again GS467 was there in Nadine list but this sample was from other data from Novogene. May be two different types of data were mixed up and that is why it is failing.
+
 ```
 GS467,007,/data/humangen_sfb1665_seqdata/short_read/raw//A5020_DNA_98_GS467/A5020_DNA_98_GS467_S157_L007_R1_001.fastq.gz,/data/humangen_sfb1665_seqdata/short_read/raw//A5020_DNA_98_GS467/A5020_DNA_98_GS467_S157_L007_R2_001.fastq.gz,0,2,0,0,case_GS467
 GS467,008,/data/humangen_sfb1665_seqdata/short_read/raw//A5020_DNA_98_GS467/A5020_DNA_98_GS467_S157_L008_R1_001.fastq.gz,/data/humangen_sfb1665_seqdata/short_read/raw//A5020_DNA_98_GS467/A5020_DNA_98_GS467_S157_L008_R2_001.fastq.gz,0,2,0,0,case_GS467
@@ -1962,4 +1964,12 @@ GS467,006,/data/humangen_sfb1665_seqdata/short_read/raw//A5020_DNA_98_GS467/A502
 GS467,007,/data/humangen_sfb1665_seqdata/short_read/raw//A5020_DNA_98_GS467/A5020_DNA_98_GS467_S51_L007_R1_001.fastq.gz,/data/humangen_sfb1665_seqdata/short_read/raw//A5020_DNA_98_GS467/A5020_DNA_98_GS467_S51_L007_R2_001.fastq.gz,0,2,0,0,case_GS467
 GS467,008,/data/humangen_sfb1665_seqdata/short_read/raw//A5020_DNA_98_GS467/A5020_DNA_98_GS467_S51_L008_R1_001.fastq.gz,/data/humangen_sfb1665_seqdata/short_read/raw//A5020_DNA_98_GS467/A5020_DNA_98_GS467_S51_L008_R2_001.fastq.gz,0,2,0,0,case_GS467
 
+```
+
+
+Command to get the annotations:
+
+
+```code
+singularity exec ensamble_vep/vep.sif vep   --dir ensamble_vep/vep_data/   -i ../99999_testing_annotations/call_snv/genome/big_test_snv.vcf.gz   --cache --offline --vcf   -o ../00000_vep_output/big_test_snv.vcf.gz    --plugin CADD,/data/humangen_kircherlab/Users/hassan/run_rare/rare-disease-pipeline/data/grch38/vcfanno/cadd/whole_genome_SNVs.tsv.gz
 ```
