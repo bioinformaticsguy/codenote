@@ -1982,3 +1982,10 @@ Command to get the local pipeline to run:
 ```code
 nextflow run main.nf -profile test,docker --outdir /0000_outdir
 ```
+
+
+I need to increase the time for this because initially it is set to 16 hours and it failes because of that and not it is running at 1 day:
+
+```bash
+2436379    18     1       108G       node24          4:38:01    1-00:00:00   nf-NFCORE_RAREDISEASE_RAREDISEASE_CALL_STRUCTURAL_VARIANTS_CALL_SV_MANTA_MANTA_(case_KiGS23)
+```
