@@ -129,3 +129,11 @@ sftp -i /ssh-path-to-your-folder/private-key.pem kdhumuksh1@sftp2.bioscientia.de
 sudo mount -t drvfs D: /mnt/d
 rsync -avh --inplace /mnt/c/Users/Ali/Documents/phd_Ali_Hassan/on_flash/ /mnt/d/
 ```
+
+
+## Checking for the failed Jobs in the Omics Cluster
+
+```bash
+sacct -u $USER -S 2025-10-07 --format=JobID,JobName%100,State,Elapsed,Timelimit%20,ReqMem,MaxRSS,ReqCPUS,AllocCPUS,ExitCode | grep FAILED
+```
+
